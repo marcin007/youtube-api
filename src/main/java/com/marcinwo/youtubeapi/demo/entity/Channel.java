@@ -23,6 +23,6 @@ public class Channel extends AbstractEntity {
 
     @ManyToOne
     @JoinColumn(name = "user_id", nullable = false)
-    private User users;
+    private User user;
 
 }

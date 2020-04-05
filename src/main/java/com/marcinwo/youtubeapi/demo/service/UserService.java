@@ -40,6 +40,8 @@ public class UserService {
     public User updateUserById(Long id, PatchUserDTO patchUserDTO){
         User user = findUserById(id);
         user.setPassword(patchUserDTO.getPassword());
+        user.setFirstName(patchUserDTO.getFirstName());
+        user.setLastName(patchUserDTO.getLastName());
         return userRepository.save(user);
     }
 

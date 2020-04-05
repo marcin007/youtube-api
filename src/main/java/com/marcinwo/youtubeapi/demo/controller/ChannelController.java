@@ -35,5 +35,10 @@ public class ChannelController {
        return channelMapper.toChannelDTO(channelService.getUserChannelsById(id));
      }
 
+     @PostMapping("/users/{id}/channels")
+    public Channel postUserChannelById(@PathVariable Long id, @RequestBody Channel channel){
+        return channelService.postUserChannelById(id, channel);
+     }
+
 
 }

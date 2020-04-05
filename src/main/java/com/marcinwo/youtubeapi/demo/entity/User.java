@@ -29,10 +29,10 @@ public class User extends AbstractEntity {
     private String userName;
     private String password;
 
-    @CreationTimestamp
-    private LocalDateTime registerDate;
+//    @CreationTimestamp
+//    private LocalDateTime registerDate;
 
-    @OneToMany(mappedBy = "users", fetch = FetchType.EAGER)
-    private Set<Channel> Channels = new HashSet<>();
+    @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
+    private Set<Channel> channels = new HashSet<>();
 
 }

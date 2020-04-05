@@ -2,13 +2,13 @@ package com.marcinwo.youtubeapi.demo.controller;
 
 import com.marcinwo.youtubeapi.demo.ApiInformation;
 import com.marcinwo.youtubeapi.demo.dto.PatchUserDTO;
+import com.marcinwo.youtubeapi.demo.dto.UserDTO;
 import com.marcinwo.youtubeapi.demo.entity.User;
+import com.marcinwo.youtubeapi.demo.mapper.UserMapper;
 import com.marcinwo.youtubeapi.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
-
 import javax.validation.Valid;
 import java.util.List;
 
@@ -17,15 +17,22 @@ import java.util.List;
 public class UserController {
 
     private UserService userService;
+    private UserMapper userMapper;
 
     @Autowired
-    public UserController(UserService userService){
+    public UserController(UserService userService, UserMapper userMapper){
         this.userService = userService;
+        this.userMapper = userMapper;
     }
 
     @GetMapping
-    public List<User> getUser(){
-        return userService.getUser();
+    public List<UserDTO> getUser(){
+        return userMapper.toUserDTO(userService.getUser());
+    }
+
+    @GetMapping("/{id_user}")
+    public UserDTO getUserById(@PathVariable("id_user") Long id){
+        return userMapper.toUserDTO(userService.findUserById(id));
     }
 
     @PostMapping
