@@ -36,8 +36,8 @@ public class UserController {
     }
 
     @PostMapping
-    public User postUser(@RequestBody User user){
-        return userService.postUser(user);
+    public UserDTO postUser(@RequestBody UserDTO user){
+        return userMapper.toUserDTO(userService.postUser(userMapper.toUserEntity(user)));
     }
 
     @DeleteMapping("/{id}")

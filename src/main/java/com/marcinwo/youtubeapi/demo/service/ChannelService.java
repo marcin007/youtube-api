@@ -1,6 +1,7 @@
 package com.marcinwo.youtubeapi.demo.service;
 
 
+import com.marcinwo.youtubeapi.demo.dto.PatchChannelDTO;
 import com.marcinwo.youtubeapi.demo.entity.Channel;
 import com.marcinwo.youtubeapi.demo.repository.ChannelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -37,4 +38,15 @@ public class ChannelService {
     public Channel postUserChannelById(Channel channel){
         return channelRepository.save(channel);
     }
+
+    public void deleteChannelById(Long id){
+        channelRepository.deleteById(id);
+    }
+
+    public Channel updateChannelById(Long id, PatchChannelDTO patchChannelDTO){
+        Channel channel = getChannelById(id);
+        channel.setDescription(patchChannelDTO.getDescription());
+        return channelRepository.save(channel);
+    }
+
 }
