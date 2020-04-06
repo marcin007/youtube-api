@@ -35,10 +35,12 @@ public class ChannelController {
        return channelMapper.toChannelDTO(channelService.getUserChannelsById(id));
      }
 
-     @PostMapping("/users/{id}/channels")
-    public Channel postUserChannelById(@PathVariable Long id, @RequestBody Channel channel){
-        return channelService.postUserChannelById(id, channel);
-     }
+    //TODO JAK ZROBIC DODAWANIE KANALU DO KONKRETNEGO UZYTKOWNIKA
+
+//     @PostMapping("/channels")
+//    public Channel postUserChannelById(@RequestBody Channel channel){
+//        return channelService.postUserChannelById(channel);
+//     }
 
 
 }

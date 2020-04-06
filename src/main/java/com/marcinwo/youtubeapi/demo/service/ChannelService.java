@@ -34,7 +34,7 @@ public class ChannelService {
         return channelRepository.findAllByUser_Id(id);
     }
 
-    public Channel postUserChannelById(Long id, Channel channel){
-        channelRepository.postUserChannelById(id,channel);
+    public Channel postUserChannelById(Channel channel){
+        return channelRepository.save(channel);
     }
 }
