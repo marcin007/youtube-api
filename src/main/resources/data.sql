@@ -9,3 +9,7 @@ INSERT INTO FILMS(description, length, title, url, channel_id)VALUES ( 'Spejson 
 INSERT INTO FILMS(description, length, title, url, channel_id)VALUES ( 'Spejson vlog odc 2', 15.22, 'Spina z Cieślakiem', 'https://www.youtube.com/watch?v=fGlTwlryXSM', 1 );
 INSERT INTO FILMS(description, length, title, url, channel_id)VALUES ( 'Gracjan opowiada co zrobil w niedziele', 1.22, 'Gracjan odc 1', 'https://www.youtube.com/watchdawt3wlryXSM', 2 );
 INSERT INTO FILMS(description, length, title, url, channel_id)VALUES ( 'Gracjan spiewa piosenke', 6.22, 'Piosenka o kwiatkach', 'https://www.youtube.com/sadasdas', 2 );
+
+INSERT INTO USER_WATCHED_FILMS(user_id, film_id, time_spent_for_watching, started_at, ended_at) VALUES ( 1, 2, '15.35', current_timestamp(), current_timestamp() );
+
+INSERT INTO COMMENTS(film_id, user_id, content, likes, dislikes) VALUES ( 1, 2, 'adsada', 10, 4 );

@@ -9,27 +9,31 @@ import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
 import javax.persistence.Table;
+import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-@Setter
+@Entity
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "comments")
-@Entity
-public class Comment extends AbstractEntity {
-
-    @ManyToOne
-    @JoinColumn(name = "film_id")
-    private Film film;
+@Table(name = "user_watched_films")
+public class UserWatchedFilm extends AbstractEntity {
 
     @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
 
-    private String content;
-    private int likes;
-    private int dislikes;
+    @ManyToOne
+    @JoinColumn(name = "film_id")
+    private Film film;
 
+    private UserWatchedFilm(User user, Film film){
+        this.film = film;
+        this.user = user;
+    }
 
+    private BigDecimal timeSpentForWatching;
+    private LocalDateTime startedAt;
+    private LocalDateTime endedAt;
 }

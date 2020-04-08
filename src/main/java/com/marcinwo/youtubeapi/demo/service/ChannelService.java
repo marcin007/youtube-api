@@ -8,8 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Set;
-import java.util.stream.Collectors;
 
 @Service
 public class ChannelService {
@@ -21,12 +19,11 @@ public class ChannelService {
         this.channelRepository = channelRepository;
     }
 
-
     public List<Channel> getChannels(){
         return channelRepository.findAll();
     }
 
-    public Channel getChannelById(Long id){
+    public Channel getChannelById(Long id) {
         return channelRepository.findById(id)
                 .orElseThrow(()-> new RuntimeException("Can not find this channel"));
     }
@@ -35,7 +32,7 @@ public class ChannelService {
         return channelRepository.findAllByUser_Id(id);
     }
 
-    public Channel postUserChannelById(Channel channel){
+    public Channel save(Channel channel){
         return channelRepository.save(channel);
     }
 

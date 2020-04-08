@@ -35,4 +35,7 @@ public class User extends AbstractEntity {
     @OneToMany(mappedBy = "user", fetch = FetchType.EAGER)
     private Set<Channel> channels = new HashSet<>();
 
+    @OneToMany(mappedBy = "user") // default Lazy
+    private Set<UserWatchedFilm> watchedFilms = new HashSet<>();
+
 }
