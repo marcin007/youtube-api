@@ -39,13 +39,7 @@ public class ChannelController {
     public List<ChannelDTO> getUserChannelsById(@PathVariable Long id){
        return channelMapper.toChannelDTO(channelService.getUserChannelsById(id));
      }
-
-    //TODO JAK ZROBIC DODAWANIE KANALU DO KONKRETNEGO UZYTKOWNIKA
-
-//     @PostMapping("/channels")
-//    public Channel postUserChannelById(@RequestBody Channel channel){
-//        return channelService.postUserChannelById(channel);
-//     }
+     
 
     @DeleteMapping("/channels/{id}")
     public ApiInformation deleteChannelById(@PathVariable Long id){
