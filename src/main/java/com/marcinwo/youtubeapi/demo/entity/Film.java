@@ -31,4 +31,7 @@ public class Film extends AbstractEntity {
     @OneToMany(mappedBy = "film")
     private Set<Comment> comments = new HashSet<>();
 
+    @ManyToOne
+    @JoinColumn(name = "category_id", nullable = false)
+    private Category category;
 }
