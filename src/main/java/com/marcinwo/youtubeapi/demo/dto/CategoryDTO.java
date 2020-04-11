@@ -1,7 +1,5 @@
 package com.marcinwo.youtubeapi.demo.dto;
 
-
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -9,13 +7,10 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@AllArgsConstructor
 @NoArgsConstructor
-public class ChannelDTO {
+@AllArgsConstructor
+public class CategoryDTO {
 
-    private Long id;
     private String name;
-    private String description;
-    private String user;
 
 }
