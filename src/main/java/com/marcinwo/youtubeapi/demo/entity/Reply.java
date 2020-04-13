@@ -5,35 +5,31 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import javax.persistence.*;
+import javax.persistence.Entity;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import java.time.LocalDateTime;
-import java.util.Set;
 
-@Setter
+@Entity
 @Getter
+@Setter
 @NoArgsConstructor
 @AllArgsConstructor
-@Table(name = "comments")
-@Entity
-public class Comment extends AbstractEntity {
+public class Reply extends AbstractEntity {
+
 
     @ManyToOne
-    @JoinColumn(name = "film_id")
-    private Film film;
-
-    @ManyToOne
-    @JoinColumn(name = "user_id")
+    @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
+
+    @ManyToOne
+    @JoinColumn(name = "comment_id", nullable = false)
+    private Comment comment;
+
+    private String content;
     private LocalDateTime createdAt;
     private LocalDateTime updatedAt;
-    private String content;
     private int likes;
     private int dislikes;
-
-    @OneToMany(mappedBy = "comment")
-    private Set<Reply> replySet;
-
-
-
 }

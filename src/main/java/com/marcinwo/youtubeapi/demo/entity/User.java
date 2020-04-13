@@ -38,4 +38,6 @@ public class User extends AbstractEntity {
     @OneToMany(mappedBy = "user") // default Lazy
     private Set<UserWatchedFilm> watchedFilms = new HashSet<>();
 
+    @OneToMany(mappedBy = "user")
+    private Set<Reply> replies = new HashSet<>();
 }
