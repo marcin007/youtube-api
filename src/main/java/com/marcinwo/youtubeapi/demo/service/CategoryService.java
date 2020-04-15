@@ -1,11 +1,8 @@
 package com.marcinwo.youtubeapi.demo.service;
 
+import com.marcinwo.youtubeapi.demo.dto.PatchCategoryDTO;
 import com.marcinwo.youtubeapi.demo.entity.Category;
 import com.marcinwo.youtubeapi.demo.repository.CategoryRepository;
-import lombok.AllArgsConstructor;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
-import lombok.Setter;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -25,4 +22,22 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
+    public Category getCategory(Long id){
+        return categoryRepository.findById(id)
+                .orElseThrow(()-> new RuntimeException("Cant find this category"));
+    }
+
+    public Category postCategory(Category category){
+        return categoryRepository.save(category);
+    }
+
+    public void deleteCategory(Long id){
+        categoryRepository.deleteById(id);
+    }
+
+    public Category updateCategoryById(Long id, PatchCategoryDTO patchCategoryDTO){
+        Category category = getCategory(id);
+        category.setName(patchCategoryDTO.getName());
+        return categoryRepository.save(category);
+    }
 }
