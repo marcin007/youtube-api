@@ -13,7 +13,6 @@ import org.springframework.web.HttpMediaTypeException;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.time.LocalDateTime;
 import java.util.List;
 
 
@@ -34,17 +33,17 @@ public class CategoryController {
         return categoryMapper.toCategoryDTO(categoryService.getCategories());
     }
 
-//    @PostMapping
-//    public CategoryDTO postCategory(@RequestBody CategoryDTO categoryDTO){
-//        return categoryMapper.toCategoryDTO(categoryService.postCategory(categoryMapper.toCategoryEntity(categoryDTO)));
-//    }
+    @PostMapping("/categories")
+    public CategoryDTO postCategory(@RequestBody CategoryDTO categoryDTO){
+        return categoryMapper.toCategoryDTO(categoryService.postCategory(categoryMapper.toCategoryEntity(categoryDTO)));
+    }
     @DeleteMapping("/categories/{id}")
     public ApiInformation deleteCategory(@PathVariable Long id){
         categoryService.deleteCategory(id);
         return new ApiInformation("Delete sucessful.", HttpStatus.OK.value());
     }
 
-    @PatchMapping("/category/{id}")
+    @PatchMapping("/categories/{id}")
     public CategoryDTO updateCategoryById(@PathVariable Long id, @Valid @RequestBody PatchCategoryDTO patchCategoryDTO){
         return categoryMapper.toCategoryDTO(categoryService.updateCategoryById(id,patchCategoryDTO));
     }

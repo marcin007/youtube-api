@@ -11,6 +11,6 @@ import lombok.Setter;
 @AllArgsConstructor
 public class PatchCategoryDTO {
 
-private String name;
+    private String name;
 
 }

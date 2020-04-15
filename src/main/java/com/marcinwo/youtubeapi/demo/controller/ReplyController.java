@@ -27,7 +27,7 @@ public class ReplyController {
         return replyMapper.toReplyDTO(replyService.getReplies());
     }
 
-    @PostMapping
+    @PostMapping("/replies")
     public ReplyDTO postReply(@RequestBody ReplyDTO replyDTO){
         return replyMapper.toReplyDTO(replyService.postReply(replyMapper.toReplyEntity(replyDTO)));
     }
