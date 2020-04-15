@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Set;
 
 @Service
 public class ChannelService {
@@ -44,6 +45,10 @@ public class ChannelService {
         Channel channel = getChannelById(id);
         channel.setDescription(patchChannelDTO.getDescription());
         return channelRepository.save(channel);
+    }
+
+    public List<Channel> getChannelsByUserId(Long id){
+        return channelRepository.findAllByUser_Id(id);
     }
 
 }

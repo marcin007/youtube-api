@@ -33,4 +33,10 @@ public class FilmController {
     public List<FilmDTO> getFilms(){
         return filmMapper.toFilmDTO(filmService.getFilms());
     }
+
+    @GetMapping("/channels/{id}/films")
+    public List<FilmDTO> getFilmsByChannelsId(@PathVariable Long id){
+        return filmMapper.toFilmDTO(filmService.getFilmsByChannelId(id));
+    }
+
 }

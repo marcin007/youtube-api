@@ -26,4 +26,8 @@ public class FilmService {
                 .orElseThrow(()-> new RuntimeException("Cant find."));
     }
 
+    public List<Film> getFilmsByChannelId(Long id){
+        return filmRepository.findAllByChannel_Id(id);
+    }
+
 }

@@ -15,49 +15,42 @@ import javax.validation.Valid;
 import java.util.List;
 
 @RestController
-@RequestMapping("/users")
 public class UserController {
 
     private UserService userService;
     private UserMapper userMapper;
-    private ChannelMapper channelMapper;
 
     @Autowired
-    public UserController(UserService userService, UserMapper userMapper, ChannelMapper channelMapper){
+    public UserController(UserService userService, UserMapper userMapper){
         this.userService = userService;
         this.userMapper = userMapper;
-        this.channelMapper = channelMapper;
     }
 
-    @GetMapping
+    @GetMapping("/users")
     public List<UserDTO> getUser(){
         return userMapper.toUserDTO(userService.findAll());
     }
 
-    @GetMapping("/{user_id}")
+    @GetMapping("/users/{user_id}")
     public UserDTO getUserById(@PathVariable("user_id") Long id){
         return userMapper.toUserDTO(userService.findUserById(id));
     }
 
-    @PostMapping
+    @PostMapping("/users")
     public UserDTO postUser(@RequestBody UserDTO user){
         return userMapper.toUserDTO(userService.postUser(userMapper.toUserEntity(user)));
     }
 
-    @DeleteMapping("/{id}")
+    @DeleteMapping("/users/{id}")
     public ApiInformation deleteUserById(@PathVariable Long id){
         userService.deleteUserById(id);
         return new ApiInformation("Deleted user", HttpStatus.OK.value());
     }
 
-    @PatchMapping("/{id}")
+    @PatchMapping("/users/{id}")
     public User updateUserById(@PathVariable Long id, @Valid @RequestBody PatchUserDTO userDTO){
         return userService.updateUserById(id, userDTO);
     }
 
-    @GetMapping("/{id}/channels")
-    public List<ChannelDTO> getChannelsByUserId(@PathVariable Long id){
-        return channelMapper.toChannelDTO(userService.findUserById(id).getChannels());
-    }
 
 }

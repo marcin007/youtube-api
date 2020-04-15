@@ -35,12 +35,6 @@ public class ChannelController {
         return channelMapper.toChannelDTO(channelService.getChannelById(id));
     }
 
-    @GetMapping("/users/{id}/channels")
-    public List<ChannelDTO> getUserChannelsById(@PathVariable Long id){
-       return channelMapper.toChannelDTO(channelService.getUserChannelsById(id));
-     }
-     
-
     @DeleteMapping("/channels/{id}")
     public ApiInformation deleteChannelById(@PathVariable Long id){
         channelService.deleteChannelById(id);
@@ -53,6 +47,10 @@ public class ChannelController {
 
     }
 
+    @GetMapping("/users/{id}/channels")
+    public List<ChannelDTO> getChannelsByUserId(@PathVariable Long id){
+        return channelMapper.toChannelDTO(channelService.getChannelsByUserId(id));
+    }
 
 
 }
