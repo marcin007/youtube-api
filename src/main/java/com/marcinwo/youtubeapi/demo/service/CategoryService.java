@@ -39,5 +39,6 @@ public class CategoryService {
         Category category = getCategory(id);
         category.setName(patchCategoryDTO.getName());
         return categoryRepository.save(category);
+
     }
 }
