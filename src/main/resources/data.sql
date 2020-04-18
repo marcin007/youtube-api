@@ -14,4 +14,4 @@ INSERT INTO FILMS(title, description, url, length, channel_id, category_id)VALUE
 
 INSERT INTO USER_WATCHED_FILMS(user_id, film_id, time_spent_for_watching, started_at, ended_at) VALUES ( 1, 2, '15.35', current_timestamp(), current_timestamp() );
 
-INSERT INTO COMMENTS(film_id, user_id, content, likes, dislikes) VALUES ( 1, 2, 'adsada', 10, 4 );
+INSERT INTO COMMENTS(film_id, user_id, content, likes, dislikes) VALUES ( 1, 2, 'Komentarz 1 z data.sql', 10, 4 );

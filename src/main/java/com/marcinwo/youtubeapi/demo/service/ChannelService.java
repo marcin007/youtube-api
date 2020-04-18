@@ -16,38 +16,38 @@ public class ChannelService {
     private ChannelRepository channelRepository;
 
     @Autowired
-    public ChannelService(ChannelRepository channelRepository){
+    public ChannelService(ChannelRepository channelRepository) {
         this.channelRepository = channelRepository;
     }
 
-    public List<Channel> getChannels(){
+    public List<Channel> getChannels() {
         return channelRepository.findAll();
     }
 
     public Channel getChannelById(Long id) {
         return channelRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("Can not find this channel"));
+                .orElseThrow(() -> new RuntimeException("Can not find this channel"));
     }
 
-    public List<Channel> getUserChannelsById(Long id){
+    public List<Channel> getUserChannelsById(Long id) {
         return channelRepository.findAllByUser_Id(id);
     }
 
-    public Channel save(Channel channel){
+    public Channel save(Channel channel) {
         return channelRepository.save(channel);
     }
 
-    public void deleteChannelById(Long id){
+    public void deleteChannelById(Long id) {
         channelRepository.deleteById(id);
     }
 
-    public Channel updateChannelById(Long id, PatchChannelDTO patchChannelDTO){
+    public Channel updateChannelById(Long id, PatchChannelDTO patchChannelDTO) {
         Channel channel = getChannelById(id);
         channel.setDescription(patchChannelDTO.getDescription());
         return channelRepository.save(channel);
     }
 
-    public List<Channel> getChannelsByUserId(Long id){
+    public List<Channel> getChannelsByUserId(Long id) {
         return channelRepository.findAllByUser_Id(id);
     }
 
