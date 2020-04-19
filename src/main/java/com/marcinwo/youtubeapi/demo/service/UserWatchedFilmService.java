@@ -5,7 +5,6 @@ import com.marcinwo.youtubeapi.demo.repository.UserWatchedFilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import java.time.LocalDateTime;
 import java.util.List;
 
 @Service
@@ -24,7 +23,7 @@ public class UserWatchedFilmService {
 
     //TODO Jak kto zrobić? Czemu nie działa?
     public List<UserWatchedFilm> getWatchedFilmsByUserId(Long id){
-        return userWatchedFilmRepository.getUserWatchedFilmsById(id);
+        return userWatchedFilmRepository.findAllByUser_Id(id);
     }
 
     public UserWatchedFilm postWatchedFilm(UserWatchedFilm userWatchedFilm){
@@ -33,6 +32,6 @@ public class UserWatchedFilmService {
 
     //TODO Jak kto zrobić? Czemu nie działa?
     public void deleteWatchedFilmsByUserId(Long id){
-        userWatchedFilmRepository.deleteUserWatchedFilmsByUserId(id);
+        userWatchedFilmRepository.deleteAllByUser_Id(id);
     }
 }

@@ -15,7 +15,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class UserWatchedFilmDTO {
 
-    private String film;
+    private String film; //TODO id
     private String user;
     private BigDecimal timeSpentForWatching;
     private LocalDateTime startedAt;

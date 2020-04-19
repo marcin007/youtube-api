@@ -9,6 +9,7 @@ import java.util.List;
 @Repository
 public interface UserWatchedFilmRepository extends JpaRepository<UserWatchedFilm, Long> {
 
-    List<UserWatchedFilm> getUserWatchedFilmsById(Long id);
-    void deleteUserWatchedFilmsByUserId(Long id);
+    List<UserWatchedFilm> findAllByUser_Id(Long id);
+
+    void deleteAllByUser_Id(Long id);
 }
