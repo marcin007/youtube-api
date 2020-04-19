@@ -27,8 +27,13 @@ public class ReplyController {
         return replyMapper.toReplyDTO(replyService.getReplies());
     }
 
+    //TODO  TO DO
+    //@GetMapping("/comments/{id}/replies")
+
     @PostMapping("/replies")
     public ReplyDTO postReply(@RequestBody ReplyDTO replyDTO){
         return replyMapper.toReplyDTO(replyService.postReply(replyMapper.toReplyEntity(replyDTO)));
     }
+
+
 }
