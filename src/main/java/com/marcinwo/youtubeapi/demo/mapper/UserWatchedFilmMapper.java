@@ -2,29 +2,52 @@ package com.marcinwo.youtubeapi.demo.mapper;
 
 
 import com.marcinwo.youtubeapi.demo.dto.UserWatchedFilmDTO;
+import com.marcinwo.youtubeapi.demo.entity.Film;
+import com.marcinwo.youtubeapi.demo.entity.User;
 import com.marcinwo.youtubeapi.demo.entity.UserWatchedFilm;
+import com.marcinwo.youtubeapi.demo.repository.FilmRepository;
+import com.marcinwo.youtubeapi.demo.repository.UserRepository;
 import org.mapstruct.Mapper;
 import org.mapstruct.Mapping;
 import org.mapstruct.Mappings;
+import org.springframework.beans.factory.annotation.Autowired;
 
-import java.math.BigDecimal;
-import java.time.LocalDateTime;
 import java.util.Collection;
 import java.util.List;
 
 @Mapper(componentModel = "spring")
-public interface UserWatchedFilmMapper {
+public abstract class UserWatchedFilmMapper {
+
+    private UserRepository userRepository;
+    private FilmRepository filmRepository;
+
+    @Autowired
+    public void setUserRepository(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
+
+    @Autowired
+    public void setFilmRepository(FilmRepository filmRepository) {
+        this.filmRepository = filmRepository;
+    }
 
     @Mappings({
-            @Mapping(target = "film", source = "film.title"),
-            @Mapping(target = "user", source = "user.userName")
+            @Mapping(target = "filmId", source = "film.id"),
+            @Mapping(target = "userId", source = "user.id")
     })
-    UserWatchedFilmDTO toUserWatchedFilmDTO(UserWatchedFilm userWatchedFilm);
-    List<UserWatchedFilmDTO> toUserWatchedFilmDTO(Collection<UserWatchedFilm> watchedFilms);
+    public abstract UserWatchedFilmDTO toUserWatchedFilmDTO(UserWatchedFilm userWatchedFilm);
 
-    @Mappings({
-            @Mapping(target = "film.title", source = "film"),
-            @Mapping(target = "user.userName", source = "user")
-    })
-    UserWatchedFilm toUserWatchedFilmEntity(UserWatchedFilmDTO userWatchedFilmDTO);
+    public abstract List<UserWatchedFilmDTO> toUserWatchedFilmDTO(Collection<UserWatchedFilm> watchedFilms);
+
+
+    public UserWatchedFilm toUserWatchedFilmEntity(UserWatchedFilmDTO userWatchedFilmDTO) {
+        UserWatchedFilm userWatchedFilm = new UserWatchedFilm();
+        Film film = filmRepository.findById(userWatchedFilmDTO.getFilmId()).orElseThrow(() -> new RuntimeException("Film not found."));
+        User user = userRepository.findById(userWatchedFilmDTO.getUserId()).orElseThrow(() -> new RuntimeException("User nor found."));
+        userWatchedFilm.setFilm(film);
+        userWatchedFilm.setUser(user);
+        return userWatchedFilm;
+    }
+
+
 }

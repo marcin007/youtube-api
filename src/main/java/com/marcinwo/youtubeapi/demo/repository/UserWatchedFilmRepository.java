@@ -11,5 +11,4 @@ public interface UserWatchedFilmRepository extends JpaRepository<UserWatchedFilm
 
     List<UserWatchedFilm> findAllByUser_Id(Long id);
 
-    void deleteAllByUser_Id(Long id);
 }

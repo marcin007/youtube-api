@@ -21,7 +21,7 @@ public class UserWatchedFilmService {
         return userWatchedFilmRepository.findAll();
     }
 
-    //TODO Jak kto zrobić? Czemu nie działa?
+
     public List<UserWatchedFilm> getWatchedFilmsByUserId(Long id){
         return userWatchedFilmRepository.findAllByUser_Id(id);
     }
@@ -30,8 +30,8 @@ public class UserWatchedFilmService {
         return userWatchedFilmRepository.save(userWatchedFilm);
     }
 
-    //TODO Jak kto zrobić? Czemu nie działa?
+    //TODO NADAL NIE DZIALA USUWANIE
     public void deleteWatchedFilmsByUserId(Long id){
-        userWatchedFilmRepository.deleteAllByUser_Id(id);
+        userWatchedFilmRepository.deleteById(id);
     }
 }

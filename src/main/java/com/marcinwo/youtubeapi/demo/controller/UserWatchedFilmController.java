@@ -28,17 +28,18 @@ public class UserWatchedFilmController {
         return userWatchedFilmMapper.toUserWatchedFilmDTO(userWatchedFilmService.getWatchedFilms());
     }
 
-    //TODO Czemu nie działa jak trzea?
+
     @GetMapping("/users/{id}/watchedHistory")
     public List<UserWatchedFilmDTO> getWatchedFilmsByUserId(@PathVariable Long id) {
         return userWatchedFilmMapper.toUserWatchedFilmDTO(userWatchedFilmService.getWatchedFilmsByUserId(id));
     }
 
-    //TODO jak zorbic dodawanie obejżanego filmu do użytkownika?
+
     @PostMapping("/watchedHistory")
     public UserWatchedFilmDTO postWatchedFilm(@RequestBody UserWatchedFilmDTO userWatchedFilmDTO){
         return userWatchedFilmMapper.toUserWatchedFilmDTO(userWatchedFilmService.postWatchedFilm(userWatchedFilmMapper.toUserWatchedFilmEntity(userWatchedFilmDTO)));
     }
+
 
     @DeleteMapping("/users/{id}/watchedHistory")
     public ApiInformation deleteWatchedFilmsByUserId(@PathVariable Long id){
