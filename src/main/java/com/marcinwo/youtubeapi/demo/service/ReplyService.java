@@ -22,6 +22,10 @@ public class ReplyService {
         return replyRepository.findAll();
     }
 
+    public List<Reply> getReply(Long id){
+        return replyRepository.findAllByCommentId(id);
+    }
+
     public Reply postReply(Reply reply){
         return replyRepository.save(reply);
     }

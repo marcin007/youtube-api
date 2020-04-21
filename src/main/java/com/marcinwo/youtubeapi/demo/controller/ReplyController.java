@@ -6,6 +6,7 @@ import com.marcinwo.youtubeapi.demo.service.ReplyService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
 import java.util.Set;
 
 @RestController
@@ -27,8 +28,11 @@ public class ReplyController {
         return replyMapper.toReplyDTO(replyService.getReplies());
     }
 
-    //TODO  TO DO
-    //@GetMapping("/comments/{id}/replies")
+
+    @GetMapping("/comments/{id}/replies")
+    public Set<ReplyDTO> getReply(@PathVariable Long id){
+        return replyMapper.toReplyDTO(replyService.getReply(id));
+    }
 
     @PostMapping("/replies")
     public ReplyDTO postReply(@RequestBody ReplyDTO replyDTO){
