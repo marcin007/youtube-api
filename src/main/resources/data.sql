@@ -25,3 +25,9 @@ INSERT INTO COMMENTS(film_id, user_id, content, likes, dislikes) VALUES ( 3, 2, 
 INSERT INTO COMMENTS(film_id, user_id, content, likes, dislikes) VALUES ( 3, 1, 'Komentarz 2 do filmu 2 spejsona', 13, 4 );
 INSERT INTO COMMENTS(film_id, user_id, content, likes, dislikes) VALUES ( 4, 1, 'Komentarz 1 do filmu Gracjana', 30, 46 );
 
+INSERT INTO REPLY(user_id, comment_id, content, likes, dislikes) VALUES ( 1,1, 'Tory były złe.', 220, 200);
+INSERT INTO REPLY(user_id, comment_id, content, likes, dislikes) VALUES ( 1,4, 'Gracjan to wybitny człowiek', 26, 488);
+INSERT INTO REPLY(user_id, comment_id, content, likes, dislikes) VALUES ( 1,4, 'Swiat nie zasługuje na taką osobe jak on', 80, 87);
+INSERT INTO REPLY(user_id, comment_id, content, likes, dislikes) VALUES ( 2,3, 'Re-komentarz do komentarza 3', 2, 46);
+INSERT INTO REPLY(user_id, comment_id, content, likes, dislikes) VALUES ( 2,2, 'Spejnon zna księge ulicy na pamięć.', 22, 8);
+

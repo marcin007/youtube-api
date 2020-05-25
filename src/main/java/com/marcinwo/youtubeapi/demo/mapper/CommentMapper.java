@@ -31,14 +31,14 @@ public abstract class CommentMapper {
     }
 
     @Mappings({
-            @Mapping(target = "film", source = "film.id"),
-            @Mapping(target = "user", source = "user.id")
+            @Mapping(target = "filmId", source = "film.id"),
+            @Mapping(target = "userId", source = "user.id")
     })
-    abstract CommentDTO toCommentDTO(Comment comment);
+    public abstract CommentDTO toCommentDTO(Comment comment);
 
-    abstract List<CommentDTO> toCommentDTO(Collection<Comment> comments);
+    public abstract List<CommentDTO> toCommentDTO(Collection<Comment> comments);
 
-    Comment toCommentEntity(CommentDTO commentDTO) {
+    public Comment toCommentEntity(CommentDTO commentDTO) {
         Comment comment = new Comment();
 
         User user = userRepository.findById(commentDTO.getUserId())

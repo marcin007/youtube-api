@@ -14,7 +14,8 @@ import java.time.LocalDateTime;
 public class ReplyDTO {
 
 
-    private String user;
+    private Long userId;
+    private Long commentId;
     private String content;
     private LocalDateTime createdAt;
 }
