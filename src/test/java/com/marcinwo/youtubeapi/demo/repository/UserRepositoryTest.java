@@ -37,7 +37,8 @@ public class UserRepositoryTest {
     @Test
     public void whenFindByUserName_thenReturnUser() {
         // given
-        User user = new User("Jacek", "Adamowski", "jadamowski", "1234",
+        User user = new User("Jacek", "Adamowski",
+                "jadamowski", "1234",
                 new HashSet<>(), new HashSet<>(), new HashSet<>());
         entityManager.persist(user);
         entityManager.flush();
