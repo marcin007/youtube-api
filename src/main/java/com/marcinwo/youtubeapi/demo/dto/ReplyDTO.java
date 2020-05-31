@@ -18,4 +18,10 @@ public class ReplyDTO {
     private Long commentId;
     private String content;
     private LocalDateTime createdAt;
+
+    public ReplyDTO(Long userId, Long commentId, String content) {
+        this.userId = userId;
+        this.commentId = commentId;
+        this.content = content;
+    }
 }
