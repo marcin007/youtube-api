@@ -33,9 +33,6 @@ public class Reply extends AbstractEntity {
     private int likes;
     private int dislikes;
 
-    public Reply(String content, int likes){
-        this.content = content;
-        this.likes = likes;
-    }
+
 
 }

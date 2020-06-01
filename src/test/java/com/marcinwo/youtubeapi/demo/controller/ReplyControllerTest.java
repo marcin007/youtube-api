@@ -2,7 +2,9 @@ package com.marcinwo.youtubeapi.demo.controller;
 
 import com.marcinwo.youtubeapi.demo.JsonUtils;
 import com.marcinwo.youtubeapi.demo.dto.ReplyDTO;
+import com.marcinwo.youtubeapi.demo.entity.Comment;
 import com.marcinwo.youtubeapi.demo.entity.Reply;
+import com.marcinwo.youtubeapi.demo.entity.User;
 import com.marcinwo.youtubeapi.demo.mapper.ReplyMapper;
 import com.marcinwo.youtubeapi.demo.service.ReplyService;
 import org.hamcrest.CoreMatchers;
@@ -18,6 +20,7 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
+import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
 
@@ -43,11 +46,13 @@ public class ReplyControllerTest {
 
     @Test
     public void getRepliesTest() throws Exception {
+
         //given
         List<Reply> replies = List.of(
-                new Reply("asd", 1),
-                new Reply("ert", 2),
-                new Reply("hgj", 5)
+                new Reply(new User(), new Comment(), "Content 1", LocalDateTime.now(), LocalDateTime.now(), 10, 32),
+                new Reply(new User(), new Comment(), "Content 2", LocalDateTime.now(), LocalDateTime.now(), 4, 3),
+                new Reply(new User(), new Comment(), "Content 3", LocalDateTime.now(), LocalDateTime.now(), 77, 222)
+
         );
 
         Set<ReplyDTO> replyDTOS = Set.of(
@@ -57,9 +62,8 @@ public class ReplyControllerTest {
         );
         //when
         when(replyService.getReplies()).thenReturn(replies);
-
-
         when(replyMapper.toReplyDTO(anyCollection())).thenReturn(replyDTOS);
+
 
         //then
         mockMvc.perform(get("/replies"))
