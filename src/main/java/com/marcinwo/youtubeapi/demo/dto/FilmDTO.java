@@ -19,4 +19,12 @@ public class FilmDTO {
     private String url;
     private double length;
     private String channel;
+
+    public FilmDTO(String title, String description, String url, double length, String channel) {
+        this.title = title;
+        this.description = description;
+        this.url = url;
+        this.length = length;
+        this.channel = channel;
+    }
 }
