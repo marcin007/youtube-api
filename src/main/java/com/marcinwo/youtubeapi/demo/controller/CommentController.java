@@ -36,7 +36,7 @@ public class CommentController {
         return commentMapper.toCommentDTO(commentService.getComments());
     }
 
-    @PostMapping("/comments") //TODO  PostMapping is not working
+    @PostMapping("/comments")
     public CommentDTO postComment (@RequestBody CommentDTO commentDTO){
         return commentMapper.toCommentDTO(commentService.save(commentMapper.toCommentEntity(commentDTO)));
     }

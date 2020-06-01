@@ -22,4 +22,13 @@ public class CommentDTO {
     private int likes;
     private int dislikes;
 
+
+    public CommentDTO(String id, Long filmId, Long userId, String content, int likes, int dislikes) {
+        this.id = id;
+        this.filmId = filmId;
+        this.userId = userId;
+        this.content = content;
+        this.likes = likes;
+        this.dislikes = dislikes;
+    }
 }
