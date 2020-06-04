@@ -43,7 +43,7 @@ public class ChannelControllerTest {
     public void getChannels() throws Exception {
         //given
         List<Channel> channels = List.of(
-                new Channel("Testoviron", "Kompendium wiedzy o polakach", new User("Stanislaw", "Testo","testoviron", "1234",
+                new Channel("Testoviron", "Kompendium wiedzy o polakach", new User("Stanislaw", "Testo", "testoviron", "1234",
                         Set.of(new Channel()), Set.of(new UserWatchedFilm()), Set.of(new Reply())), Set.of(new Film())),
                 new Channel("Kononowicz", "Kompendium wiedzy o Bialymstoku", new User(), Set.of(new Film())),
                 new Channel("Biedron", "Kompendium wiedzy o biedronkach", new User(), Set.of(new Film()))
@@ -64,5 +64,4 @@ public class ChannelControllerTest {
                 .andExpect(content().string(CoreMatchers.containsString("Toczek")))
                 .andExpect(content().json(JsonUtils.toJsonString(channelDTOS)));
     }
-
 }

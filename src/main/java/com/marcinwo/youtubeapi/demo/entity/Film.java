@@ -24,14 +24,14 @@ public class Film extends AbstractEntity {
     private String url;
     private double length;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "channel_id", nullable = false)
     private Channel channel;
 
     @OneToMany(mappedBy = "film")
     private Set<Comment> comments = new HashSet<>();
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
 }

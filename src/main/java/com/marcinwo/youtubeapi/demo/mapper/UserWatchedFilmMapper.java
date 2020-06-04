@@ -5,6 +5,8 @@ import com.marcinwo.youtubeapi.demo.dto.UserWatchedFilmDTO;
 import com.marcinwo.youtubeapi.demo.entity.Film;
 import com.marcinwo.youtubeapi.demo.entity.User;
 import com.marcinwo.youtubeapi.demo.entity.UserWatchedFilm;
+import com.marcinwo.youtubeapi.demo.exeption.FilmNotFoundException;
+import com.marcinwo.youtubeapi.demo.exeption.UserNotFoundException;
 import com.marcinwo.youtubeapi.demo.repository.FilmRepository;
 import com.marcinwo.youtubeapi.demo.repository.UserRepository;
 import org.mapstruct.Mapper;
@@ -42,8 +44,8 @@ public abstract class UserWatchedFilmMapper {
 
     public UserWatchedFilm toUserWatchedFilmEntity(UserWatchedFilmDTO userWatchedFilmDTO) {
         UserWatchedFilm userWatchedFilm = new UserWatchedFilm();
-        Film film = filmRepository.findById(userWatchedFilmDTO.getFilmId()).orElseThrow(() -> new RuntimeException("Film not found."));
-        User user = userRepository.findById(userWatchedFilmDTO.getUserId()).orElseThrow(() -> new RuntimeException("User nor found."));
+        Film film = filmRepository.findById(userWatchedFilmDTO.getFilmId()).orElseThrow(() -> new FilmNotFoundException("Film not found."));
+        User user = userRepository.findById(userWatchedFilmDTO.getUserId()).orElseThrow(() -> new UserNotFoundException("User nor found."));
         userWatchedFilm.setFilm(film);
         userWatchedFilm.setUser(user);
         return userWatchedFilm;
