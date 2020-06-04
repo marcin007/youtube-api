@@ -28,7 +28,7 @@ public class CategoryControllerWithoutMapper {
     }
 
 
-    @DeleteMapping("/categories/{id}")
+    @DeleteMapping("/categories2/{id}")
     public ApiInformation deleteCategory(@PathVariable Long id){
         categoryService.deleteCategory(id);
         return new ApiInformation("Delete sucessful.", HttpStatus.OK.value());

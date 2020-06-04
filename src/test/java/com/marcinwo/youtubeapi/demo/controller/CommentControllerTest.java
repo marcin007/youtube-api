@@ -56,12 +56,12 @@ public class CommentControllerTest {
         );
 
         List<CommentDTO> commentDTOS = List.of( //TODO czemu nie dziala parsowanie tego localdatetime??????????
-                new CommentDTO("2", 2L, 1L, "Komentarz 1 DTO", 22, 33),
-                new CommentDTO("3", 3L, 3L, "Komentarz 2 DTO", 22, 33)
-//                new CommentDTO("1", 1L, 2L,
-//                        LocalDateTime.of(2220, Month.FEBRUARY, 22, 11, 11),
-//                        LocalDateTime.of(1986, Month.APRIL, 8, 12, 30),
-//                        "Komentarz 3 DTO", 22, 33)
+                new CommentDTO(2L, 2L, 1L, "Komentarz 1 DTO", 22, 33),
+                new CommentDTO(3L, 3L, 3L, "Komentarz 2 DTO", 22, 33),
+                new CommentDTO(1L, 1L, 2L,
+                        LocalDateTime.of(2220, Month.FEBRUARY, 22, 11, 11),
+                        LocalDateTime.of(1986, Month.APRIL, 8, 12, 30),
+                        "Komentarz 3 DTO", 22, 33)
         );
 
 

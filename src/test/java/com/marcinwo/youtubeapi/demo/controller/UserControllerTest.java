@@ -1,5 +1,7 @@
 package com.marcinwo.youtubeapi.demo.controller;
 
+import com.fasterxml.jackson.core.JsonProcessingException;
+import com.marcinwo.youtubeapi.demo.ExampleData;
 import com.marcinwo.youtubeapi.demo.JsonUtils;
 import com.marcinwo.youtubeapi.demo.dto.UserDTO;
 import com.marcinwo.youtubeapi.demo.entity.Channel;
@@ -14,6 +16,7 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
+import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
@@ -27,7 +30,7 @@ import static org.mockito.ArgumentMatchers.anyCollection;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(UserController.class)
@@ -65,7 +68,30 @@ public class UserControllerTest {
                 .andDo(print())
                 .andExpect(content().string(CoreMatchers.containsString("Jar")))
                 .andExpect(content().json(JsonUtils.toJsonString(userDTOS)));
-
-
     }
+
+    @Test
+    public void postUserTest() throws Exception { // TODO err
+        //given
+        UserDTO userDTOBeforeSave = new UserDTO(1L, "231", "23", "edwr", "32");
+        UserDTO userDTOAfterSave = new UserDTO(1L, "231", "23", "edwr", "32");
+
+
+        //when
+        when(userMapper.toUserEntity(userDTOBeforeSave)).thenReturn(ExampleData.user());
+        when(userService.postUser(ExampleData.user())).thenReturn(ExampleData.user());
+        when(userMapper.toUserDTO(ExampleData.user())).thenReturn(userDTOAfterSave);
+
+        //then
+        mockMvc.perform(post("/users")
+                .content(JsonUtils.toJsonString(userDTOBeforeSave))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON))
+
+                .andDo(print())
+                .andExpect(status().isOk())
+        .andExpect(jsonPath("$.name").value("user1"))
+        .andExpect(content().json(JsonUtils.toJsonString(userDTOAfterSave)));
+    }
+
 }

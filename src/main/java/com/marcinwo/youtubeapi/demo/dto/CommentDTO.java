@@ -13,7 +13,7 @@ import java.time.LocalDateTime;
 @AllArgsConstructor
 public class CommentDTO {
 
-    private String id;
+    private Long id;
     private Long filmId;
     private Long userId;
     private LocalDateTime createdAt;
@@ -23,7 +23,7 @@ public class CommentDTO {
     private int dislikes;
 
 
-    public CommentDTO(String id, Long filmId, Long userId, String content, int likes, int dislikes) {
+    public CommentDTO(Long id, Long filmId, Long userId, String content, int likes, int dislikes) {
         this.id = id;
         this.filmId = filmId;
         this.userId = userId;

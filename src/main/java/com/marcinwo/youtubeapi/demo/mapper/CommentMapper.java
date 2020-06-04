@@ -4,6 +4,8 @@ import com.marcinwo.youtubeapi.demo.dto.CommentDTO;
 import com.marcinwo.youtubeapi.demo.entity.Comment;
 import com.marcinwo.youtubeapi.demo.entity.Film;
 import com.marcinwo.youtubeapi.demo.entity.User;
+import com.marcinwo.youtubeapi.demo.exeption.FilmNotFoundException;
+import com.marcinwo.youtubeapi.demo.exeption.UserNotFoundException;
 import com.marcinwo.youtubeapi.demo.repository.FilmRepository;
 import com.marcinwo.youtubeapi.demo.repository.UserRepository;
 import org.mapstruct.Mapper;
@@ -42,12 +44,17 @@ public abstract class CommentMapper {
         Comment comment = new Comment();
 
         User user = userRepository.findById(commentDTO.getUserId())
-                .orElseThrow(() -> new RuntimeException("User not found"));
+                .orElseThrow(() -> new UserNotFoundException("User not found"));
         comment.setUser(user);
 
         Film film = filmRepository.findById(commentDTO.getFilmId())
-                .orElseThrow(() -> new RuntimeException("Film not found"));
+                .orElseThrow(() -> new FilmNotFoundException("Film not found"));
         comment.setFilm(film);
+
+        comment.setLikes(commentDTO.getLikes());
+        comment.setDislikes(commentDTO.getDislikes());
+
+        // TODO: 03.06.2020 dokonczyc
 
         return comment;
     }

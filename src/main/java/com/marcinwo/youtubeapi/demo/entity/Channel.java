@@ -21,11 +21,11 @@ public class Channel extends AbstractEntity {
     private String name;
     private String description;
 
-    @ManyToOne
+    @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "user_id", nullable = false)
     private User user;
 
-    @OneToMany(mappedBy = "channel")
+    @OneToMany(mappedBy = "channel", cascade = CascadeType.ALL)
     private Set<Film> films = new HashSet<>();
 
 }
