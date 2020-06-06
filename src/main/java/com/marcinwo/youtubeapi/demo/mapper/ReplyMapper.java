@@ -4,6 +4,8 @@ import com.marcinwo.youtubeapi.demo.dto.ReplyDTO;
 import com.marcinwo.youtubeapi.demo.entity.Comment;
 import com.marcinwo.youtubeapi.demo.entity.Reply;
 import com.marcinwo.youtubeapi.demo.entity.User;
+import com.marcinwo.youtubeapi.demo.exeption.CommentNotFoundException;
+import com.marcinwo.youtubeapi.demo.exeption.UserNotFoundException;
 import com.marcinwo.youtubeapi.demo.repository.CommentRepository;
 import com.marcinwo.youtubeapi.demo.repository.UserRepository;
 import org.mapstruct.Mapper;
@@ -42,10 +44,10 @@ public abstract class ReplyMapper {
     public Reply toReplyEntity(ReplyDTO replyDTO){
         Reply reply = new Reply();
 
-        User user = userRepository.findById(replyDTO.getUserId()).orElseThrow(()-> new RuntimeException("User nor found."));
+        User user = userRepository.findById(replyDTO.getUserId()).orElseThrow(()-> new UserNotFoundException("User nor found."));
         reply.setUser(user);
 
-        Comment comment = commentRepository.findById(replyDTO.getCommentId()).orElseThrow(()-> new RuntimeException("Comment nor found."));
+        Comment comment = commentRepository.findById(replyDTO.getCommentId()).orElseThrow(()-> new CommentNotFoundException("Comment nor found."));
         reply.setComment(comment);
 
         return reply;
