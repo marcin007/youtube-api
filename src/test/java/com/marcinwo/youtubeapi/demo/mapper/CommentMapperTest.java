@@ -4,6 +4,7 @@ import com.marcinwo.youtubeapi.demo.ExampleData;
 import com.marcinwo.youtubeapi.demo.dto.CommentDTO;
 import com.marcinwo.youtubeapi.demo.entity.Comment;
 import com.marcinwo.youtubeapi.demo.entity.Film;
+import com.marcinwo.youtubeapi.demo.entity.Reply;
 import com.marcinwo.youtubeapi.demo.entity.User;
 import com.marcinwo.youtubeapi.demo.exeption.FilmNotFoundException;
 import com.marcinwo.youtubeapi.demo.exeption.UserNotFoundException;
@@ -15,6 +16,9 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
+
+import java.time.LocalDateTime;
+import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
 
@@ -89,6 +93,18 @@ public class CommentMapperTest {
         Comment comment = commentMapper.toCommentEntity(commentDTO);
         assertEquals(11, comment.getLikes());
         assertEquals(22, comment.getDislikes());
+    }
+
+    @Test
+    public void toCommentDtoTest(){
+
+        Comment comment = new Comment(new Film(), new User(), LocalDateTime.now(), LocalDateTime.now(),
+                "ala", 44, 55, Set.of(new Reply()));
+        CommentDTO commentDTO = commentMapper.toCommentDTO(comment);
+
+        assertEquals(44, commentDTO.getLikes());
+        assertEquals(55, commentDTO.getDislikes());
+        assertEquals("ala", commentDTO.getContent());
     }
 
 }

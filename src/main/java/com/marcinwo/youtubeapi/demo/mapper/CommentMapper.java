@@ -54,7 +54,9 @@ public abstract class CommentMapper {
         comment.setLikes(commentDTO.getLikes());
         comment.setDislikes(commentDTO.getDislikes());
 
-        // TODO: 03.06.2020 dokonczyc
+        comment.setContent(commentDTO.getContent());
+        comment.setUpdatedAt(commentDTO.getUpdatedAt());
+        comment.setCreatedAt(commentDTO.getCreatedAt());
 
         return comment;
     }
