@@ -42,4 +42,6 @@ public class UserMapperTest {
         assertEquals(user.getId(), userDTO.getId());
     }
 
+    //dla kolekcji List<UserDTO> toUserDTO
+
 }
