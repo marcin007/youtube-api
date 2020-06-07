@@ -20,4 +20,14 @@ public class CategoryMapperTest {
         assertEquals(categoryDTO.getName(), category.getName());
     }
 
+    @Test
+    public void toCategoryEntityTest(){
+        CategoryDTO  categoryDTO = new CategoryDTO(1L,"aaa");
+
+        Category category = categoryMapper.toCategoryEntity(categoryDTO);
+
+        assertEquals("aaa", category.getName());
+    }
+
+    // dla kolekcji toCategoryDtoTest
 }

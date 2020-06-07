@@ -27,4 +27,6 @@ public class ChannelMapperTest {
         assertEquals(channelDTO.getUser(), channel.getUser()); //todo czy tak się to powinno robić?
 
     }
+
+    // dla kolekcji  toChannelDtoTest(){
 }

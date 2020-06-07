@@ -66,8 +66,8 @@ public class CategoryControllerTest {
 
     @Test //todo err
     public void postCategoriesTest() throws Exception {
-        CategoryDTO categoryDTOBeforeSave = new CategoryDTO("name1");
-        CategoryDTO categoryDTOAfterSave = new CategoryDTO(1L, "name1");
+        CategoryDTO categoryDTOBeforeSave = new CategoryDTO("name1"); // nie ma id
+        CategoryDTO categoryDTOAfterSave = new CategoryDTO(1L, "name1"); //to ma id, bo mu nadaje to id baza danych
 
         Category category = new Category(1L, "name1");
         when(categoryMapper.toCategoryEntity(categoryDTOBeforeSave)).thenReturn(category);
