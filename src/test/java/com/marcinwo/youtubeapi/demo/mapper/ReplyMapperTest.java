@@ -33,12 +33,13 @@ public class ReplyMapperTest {
     @Autowired
     private CommentRepository commentRepository;
 
+
     @Test(expected = UserNotFoundException.class)
     public void when_toReplyEntityWithoutExistingUserAndWithoutExistingComment_then_UserNotFoundException(){
         userRepository.deleteAll();
         commentRepository.deleteAll();
 
-        ReplyDTO replyDTO = new ReplyDTO(99L, 99L,"lala");
+        ReplyDTO replyDTO = new ReplyDTO(99L, 99L,"lala", 33,33);
         replyMapper.toReplyEntity(replyDTO);
     }
 
@@ -52,7 +53,7 @@ public class ReplyMapperTest {
 
         Long userId = user.getId();
 
-        ReplyDTO replyDTO = new ReplyDTO(userId, 99L,"lala");
+        ReplyDTO replyDTO = new ReplyDTO(userId, 99L,"lala",33,33);
         replyMapper.toReplyEntity(replyDTO);
     }
 
@@ -66,7 +67,7 @@ public class ReplyMapperTest {
 
         Long commentId = comment.getId();
 
-        ReplyDTO replyDTO = new ReplyDTO(99L, commentId,"lala", LocalDateTime.now());
+        ReplyDTO replyDTO = new ReplyDTO(99L, commentId,"lala", LocalDateTime.now(),33,33);
         replyMapper.toReplyEntity(replyDTO);
     }
 
@@ -83,11 +84,24 @@ public class ReplyMapperTest {
 
         Long userId = user.getId();
         Long commentId = comment.getId();
-        ReplyDTO replyDTO = new ReplyDTO(userId, commentId,"lala", LocalDateTime.now());
+        ReplyDTO replyDTO = new ReplyDTO(userId, commentId,"lala", LocalDateTime.now(),33,33);
 
         Reply reply = replyMapper.toReplyEntity(replyDTO);
-        //assertEquals("lala", reply.getContent());
-
+       // assertEquals("lala", reply.getContent()); //TODO czemu tutaj mam nulla? czy to winna złego mappera?
+        //assertEquals(LocalDateTime.now() ,reply.getCreatedAt());
     }
+
+    @Test
+    public void toReplyDtoTest(){
+        Reply reply = new Reply(new User(), new Comment(), "fiki", LocalDateTime.now(), LocalDateTime.now(), 22, 44);
+
+        ReplyDTO replyDTO = replyMapper.toReplyDTO(reply);
+
+        assertEquals(22, replyDTO.getLikes());
+        assertEquals(44, replyDTO.getDislikes());
+        assertEquals("fiki", replyDTO.getContent());
+    }
+
+    // dla kolekcji public void toReplyDtoTest(){
 
 }

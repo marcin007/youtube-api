@@ -39,8 +39,9 @@ public abstract class ReplyMapper {
     public abstract ReplyDTO toReplyDTO(Reply reply);
     public abstract Set<ReplyDTO> toReplyDTO(Collection<Reply> reply);
 
-
-
+    @Mappings({
+            @Mapping(target = "content", source ="content"),
+    })
     public Reply toReplyEntity(ReplyDTO replyDTO){
         Reply reply = new Reply();
 
