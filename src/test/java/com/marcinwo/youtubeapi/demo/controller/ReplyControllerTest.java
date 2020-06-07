@@ -56,9 +56,9 @@ public class ReplyControllerTest {
         );
 
         Set<ReplyDTO> replyDTOS = Set.of(
-                new ReplyDTO(2L, 2L, "uiop"),
-                new ReplyDTO(1L, 1L, "qwer"),
-                new ReplyDTO(3L, 3L, "asd")
+                new ReplyDTO(2L, 2L, "uiop", 33, 33),
+                new ReplyDTO(1L, 1L, "qwer", 33, 33),
+                new ReplyDTO(3L, 3L, "asd", 33, 33)
         );
         //when
         when(replyService.getReplies()).thenReturn(replies);
