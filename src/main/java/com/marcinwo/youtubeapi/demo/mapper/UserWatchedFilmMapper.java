@@ -48,6 +48,9 @@ public abstract class UserWatchedFilmMapper {
         User user = userRepository.findById(userWatchedFilmDTO.getUserId()).orElseThrow(() -> new UserNotFoundException("User nor found."));
         userWatchedFilm.setFilm(film);
         userWatchedFilm.setUser(user);
+        userWatchedFilm.setTimeSpentForWatching(userWatchedFilmDTO.getTimeSpentForWatching());
+        userWatchedFilm.setEndedAt(userWatchedFilmDTO.getEndedAt());
+        userWatchedFilm.setStartedAt(userWatchedFilmDTO.getStartedAt());
         return userWatchedFilm;
     }
 
