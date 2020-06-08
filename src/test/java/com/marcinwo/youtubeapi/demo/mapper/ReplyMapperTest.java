@@ -87,7 +87,7 @@ public class ReplyMapperTest {
         ReplyDTO replyDTO = new ReplyDTO(userId, commentId,"lala", LocalDateTime.now(),33,33);
 
         Reply reply = replyMapper.toReplyEntity(replyDTO);
-       // assertEquals("lala", reply.getContent()); //TODO czemu tutaj mam nulla? czy to winna złego mappera?
+        assertEquals("lala", reply.getContent()); //TODO czemu tutaj mam nulla? czy to winna złego mappera?
         //assertEquals(LocalDateTime.now() ,reply.getCreatedAt());
     }
 

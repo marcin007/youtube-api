@@ -39,9 +39,6 @@ public abstract class ReplyMapper {
     public abstract ReplyDTO toReplyDTO(Reply reply);
     public abstract Set<ReplyDTO> toReplyDTO(Collection<Reply> reply);
 
-    @Mappings({
-            @Mapping(target = "content", source ="content"),
-    })
     public Reply toReplyEntity(ReplyDTO replyDTO){
         Reply reply = new Reply();
 
@@ -50,6 +47,10 @@ public abstract class ReplyMapper {
 
         Comment comment = commentRepository.findById(replyDTO.getCommentId()).orElseThrow(()-> new CommentNotFoundException("Comment nor found."));
         reply.setComment(comment);
+
+        reply.setContent(replyDTO.getContent());
+
+        // TODO: 07.06.2020 uzupelnic
 
         return reply;
     }
