@@ -36,7 +36,7 @@ public class FilmMapperTest {
     }
 
     @Test
-    public void toCollectionFilmDtoTest(){  //todo JAK TESTOWAC KOLEKCJE?
+    public void toCollectionFilmDtoTest(){
         List<Film> films = List.of(
                 new Film(LocalDateTime.now(), "Sarnie zniwo", "Git produkcja", "www.fakamaka.co",
                         22, new Channel(), Set.of(new Comment()), new Category()),
@@ -45,6 +45,6 @@ public class FilmMapperTest {
         );
 
         List<FilmDTO> filmDTOS = filmMapper.toFilmDTO(films);
-        //assertEquals(filmDTOS.stream());
+        //assertEquals(filmDTOS.get(0).getChannel());
     }
 }
