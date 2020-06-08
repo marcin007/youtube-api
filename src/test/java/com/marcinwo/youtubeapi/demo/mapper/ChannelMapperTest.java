@@ -24,7 +24,7 @@ public class ChannelMapperTest {
         assertEquals(channelDTO.getName(), channel.getName());
         assertEquals(channelDTO.getDescription(), channel.getDescription());
         assertEquals(channelDTO.getId(), channel.getId());
-        assertEquals(channelDTO.getUser(), channel.getUser()); //todo czy tak się to powinno robić?
+        assertEquals(channelDTO.getUser(), channel.getUser());
 
     }
 
