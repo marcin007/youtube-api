@@ -4,6 +4,7 @@ package com.marcinwo.youtubeapi.demo.service;
 import com.marcinwo.youtubeapi.demo.dto.PatchUserDTO;
 import com.marcinwo.youtubeapi.demo.dto.UserDTO;
 import com.marcinwo.youtubeapi.demo.entity.User;
+import com.marcinwo.youtubeapi.demo.exeption.UserNotFoundException;
 import com.marcinwo.youtubeapi.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -35,7 +36,7 @@ public class UserService {
 
     public User findUserById(Long id){
         return userRepository.findById(id)
-                .orElseThrow(() -> new RuntimeException("Cant find user by id."));
+                .orElseThrow(() -> new UserNotFoundException("Cant find user by id."));
     }
 
     public User updateUserById(Long id, PatchUserDTO patchUserDTO){

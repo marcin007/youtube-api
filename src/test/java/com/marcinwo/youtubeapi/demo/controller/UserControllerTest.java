@@ -3,11 +3,13 @@ package com.marcinwo.youtubeapi.demo.controller;
 import com.fasterxml.jackson.core.JsonProcessingException;
 import com.marcinwo.youtubeapi.demo.ExampleData;
 import com.marcinwo.youtubeapi.demo.JsonUtils;
+import com.marcinwo.youtubeapi.demo.dto.PatchUserDTO;
 import com.marcinwo.youtubeapi.demo.dto.UserDTO;
 import com.marcinwo.youtubeapi.demo.entity.Channel;
 import com.marcinwo.youtubeapi.demo.entity.Reply;
 import com.marcinwo.youtubeapi.demo.entity.User;
 import com.marcinwo.youtubeapi.demo.entity.UserWatchedFilm;
+import com.marcinwo.youtubeapi.demo.exeption.UserNotFoundException;
 import com.marcinwo.youtubeapi.demo.mapper.UserMapper;
 import com.marcinwo.youtubeapi.demo.service.UserService;
 import org.hamcrest.CoreMatchers;
@@ -19,14 +21,11 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.List;
 import java.util.Set;
 
-import static org.mockito.ArgumentMatchers.anyCollection;
+import static org.mockito.ArgumentMatchers.*;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -71,7 +70,7 @@ public class UserControllerTest {
     }
 
     @Test
-    public void postUserTest() throws Exception { // TODO err
+    public void postUserTest() throws Exception { //
         //given
         UserDTO userDTOBeforeSave = new UserDTO(1L, "231", "23", "edwr", "32");
         UserDTO userDTOAfterSave = new UserDTO(1L, "231", "23", "edwr", "32");
@@ -86,12 +85,32 @@ public class UserControllerTest {
         mockMvc.perform(post("/users")
                 .content(JsonUtils.toJsonString(userDTOBeforeSave))
                 .contentType(MediaType.APPLICATION_JSON)
-                .accept(MediaType.APPLICATION_JSON))
+                .accept(MediaType.APPLICATION_JSON)
+                .characterEncoding("utf-8"))
+
 
                 .andDo(print())
                 .andExpect(status().isOk())
-        .andExpect(jsonPath("$.name").value("user1"))
-        .andExpect(content().json(JsonUtils.toJsonString(userDTOAfterSave)));
+                .andExpect(jsonPath("$.name").value("user1"))
+                .andExpect(content().json(JsonUtils.toJsonString(userDTOAfterSave)));
+    }
+
+    @Test
+    public void given_UserNotExist_when_PatchUser_then_NotFound() throws Exception {
+        PatchUserDTO patchUserDTO = new PatchUserDTO("ala", "ala","1234");
+
+        when(userService.findUserById(22L)).thenThrow(new UserNotFoundException("user not found"));
+        when(userService.updateUserById(eq(22L), any(PatchUserDTO.class))).thenCallRealMethod();
+
+        mockMvc.perform(patch("/users/22")
+                .content(JsonUtils.toJsonString(patchUserDTO))
+                .contentType(MediaType.APPLICATION_JSON)
+                .accept(MediaType.APPLICATION_JSON)
+                .characterEncoding("utf-8"))
+
+                .andDo(print())
+                .andExpect(status().isNotFound())
+                .andExpect(jsonPath("$.error").value("User not found."));
     }
 
 }

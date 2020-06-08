@@ -7,10 +7,8 @@ import com.marcinwo.youtubeapi.demo.entity.User;
 import com.marcinwo.youtubeapi.demo.entity.UserWatchedFilm;
 import com.marcinwo.youtubeapi.demo.exeption.FilmNotFoundException;
 import com.marcinwo.youtubeapi.demo.exeption.UserNotFoundException;
-import com.marcinwo.youtubeapi.demo.exeption.UserWatchedFilmNotFoundException;
 import com.marcinwo.youtubeapi.demo.repository.FilmRepository;
 import com.marcinwo.youtubeapi.demo.repository.UserRepository;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -24,7 +22,7 @@ import static org.junit.Assert.*;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class UserWatchedFilmMapperTest {
+public class UserWatchedFilmMapperTestIT {
 
     @Autowired
     private UserRepository userRepository;
@@ -91,17 +89,17 @@ public class UserWatchedFilmMapperTest {
         UserWatchedFilmDTO userWatchedFilmDTO = new UserWatchedFilmDTO(userId, filmId, new BigDecimal("9.5"), LocalDateTime.now(), LocalDateTime.now());
 
         UserWatchedFilm userWatchedFilm = userWatchedFilmMapper.toUserWatchedFilmEntity(userWatchedFilmDTO);
-        assertEquals(new BigDecimal(9.5), userWatchedFilm.getTimeSpentForWatching());
-       // assertEquals(user, userWatchedFilm.getUser()); //todo CZemu to nie działa?
+        assertEquals(new BigDecimal("9.5"), userWatchedFilm.getTimeSpentForWatching());
+        assertEquals(user.getId(), userWatchedFilm.getUser().getId());
     }
 
     @Test
     public void toUserWatchedFilmDTOTest(){
-        UserWatchedFilm userWatchedFilm = new UserWatchedFilm(new User(), new Film(), new BigDecimal(44), LocalDateTime.now(), LocalDateTime.now());
+        UserWatchedFilm userWatchedFilm = new UserWatchedFilm(new User(), new Film(), new BigDecimal("44"), LocalDateTime.now(), LocalDateTime.now());
 
         UserWatchedFilmDTO userWatchedFilmDTO = userWatchedFilmMapper.toUserWatchedFilmDTO(userWatchedFilm);
 
-        assertEquals(new BigDecimal(44), userWatchedFilmDTO.getTimeSpentForWatching());
+        assertEquals(new BigDecimal("44"), userWatchedFilmDTO.getTimeSpentForWatching());
 
     }
 }
