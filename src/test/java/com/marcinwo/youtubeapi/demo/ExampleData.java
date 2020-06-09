@@ -27,7 +27,7 @@ public class ExampleData {
     public static Film film() {
         return new Film(
                 LocalDateTime.now(), "Matrix", "costam", "url", 120,
-                new Channel("channel1", "channel desc", user(), new HashSet<>()), new HashSet<>(), categoryThriller()
+                new Channel("channel1", "channel desc", new User(), new HashSet<>()), new HashSet<>(), new Category()
         );
     }
 
