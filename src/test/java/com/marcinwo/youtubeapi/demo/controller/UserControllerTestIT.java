@@ -8,6 +8,7 @@ import com.marcinwo.youtubeapi.demo.service.UserService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
@@ -22,7 +23,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.
 
 @ContextConfiguration(classes = YoutubeApiApplication.class)
 @RunWith(SpringRunner.class)
-@WebMvcTest(UserController.class)
+@AutoConfigureMockMvc
 @SpringBootTest
 public class UserControllerTestIT {
 
@@ -34,7 +35,6 @@ public class UserControllerTestIT {
 
     @Autowired
     private UserMapper userMapper;
-
 
     @Test
     public void given_UserNotExist_when_PatchUser_then222_NotFound222() throws Exception {
@@ -51,6 +51,5 @@ public class UserControllerTestIT {
                 .andDo(print())
                 .andExpect(status().isNotFound())
                 .andExpect(jsonPath("$.error").value("User not found."));
-
     }
 }

@@ -7,6 +7,7 @@ import com.marcinwo.youtubeapi.demo.entity.User;
 import com.marcinwo.youtubeapi.demo.exeption.UserNotFoundException;
 import com.marcinwo.youtubeapi.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
@@ -30,16 +31,18 @@ public class UserService {
         return userRepository.save(user);
     }
 
-    public void deleteUserById(Long id){
-        userRepository.deleteById(id);
+    public void deleteUserById(Long id) {
+        try {
+            userRepository.deleteById(id);
+        } catch (EmptyResultDataAccessException ignored) { }
     }
 
-    public User findUserById(Long id){
+    public User findUserById(Long id) {
         return userRepository.findById(id)
                 .orElseThrow(() -> new UserNotFoundException("Cant find user by id."));
     }
 
-    public User updateUserById(Long id, PatchUserDTO patchUserDTO){
+    public User updateUserById(Long id, PatchUserDTO patchUserDTO) {
         User user = findUserById(id);
         user.setPassword(patchUserDTO.getPassword());
         user.setFirstName(patchUserDTO.getFirstName());
