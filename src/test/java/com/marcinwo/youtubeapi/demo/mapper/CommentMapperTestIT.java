@@ -120,13 +120,13 @@ public class CommentMapperTestIT {
 
         List<CommentDTO> commentDTOS = commentMapper.toCommentDTO(comments);
 
-        assertEquals("ala", commentDTOS.get(0).getContent());
-        assertEquals(44, commentDTOS.get(0).getLikes());
-        assertEquals(55, commentDTOS.get(0).getDislikes());
+        assertEquals(comments.get(0).getContent(), commentDTOS.get(0).getContent());
+        assertEquals(comments.get(0).getLikes(), commentDTOS.get(0).getLikes());
+        assertEquals(comments.get(0).getDislikes(), commentDTOS.get(0).getDislikes());
 
-        assertEquals("fiki", commentDTOS.get(1).getContent());
-        assertEquals(54, commentDTOS.get(1).getLikes());
-        assertEquals(65, commentDTOS.get(1).getDislikes());
+        assertEquals(comments.get(1).getContent(), commentDTOS.get(1).getContent());
+        assertEquals(comments.get(1).getLikes(), commentDTOS.get(1).getLikes());
+        assertEquals(comments.get(1).getDislikes(), commentDTOS.get(1).getDislikes());
 
     }
 
