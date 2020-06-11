@@ -18,6 +18,8 @@ import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.test.context.junit4.SpringRunner;
 
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Set;
 
 import static org.junit.Assert.assertEquals;
@@ -105,6 +107,27 @@ public class CommentMapperTestIT {
         assertEquals(44, commentDTO.getLikes());
         assertEquals(55, commentDTO.getDislikes());
         assertEquals("ala", commentDTO.getContent());
+    }
+
+    @Test
+    public void toCommentListDtoTest(){
+        List<Comment> comments = new ArrayList<>(List.of(
+                new Comment(new Film(), new User(), LocalDateTime.now(), LocalDateTime.now(),
+                        "ala", 44, 55, Set.of(new Reply())),
+                new Comment(new Film(), new User(), LocalDateTime.now(), LocalDateTime.now(),
+                        "fiki", 54, 65, Set.of(new Reply()))
+        ));
+
+        List<CommentDTO> commentDTOS = commentMapper.toCommentDTO(comments);
+
+        assertEquals("ala", commentDTOS.get(0).getContent());
+        assertEquals(44, commentDTOS.get(0).getLikes());
+        assertEquals(55, commentDTOS.get(0).getDislikes());
+
+        assertEquals("fiki", commentDTOS.get(1).getContent());
+        assertEquals(54, commentDTOS.get(1).getLikes());
+        assertEquals(65, commentDTOS.get(1).getDislikes());
+
     }
 
 }
