@@ -26,7 +26,8 @@ public class CategoryMapperTest {
 
         Category category = categoryMapper.toCategoryEntity(categoryDTO);
 
-        assertEquals("aaa", category.getName());
+        assertEquals(categoryDTO.getName(), category.getName());
+        assertEquals(categoryDTO.getId(), category.getId());
     }
 
     // dla kolekcji toCategoryDtoTest
