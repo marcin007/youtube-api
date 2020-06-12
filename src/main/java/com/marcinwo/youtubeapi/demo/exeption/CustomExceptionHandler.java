@@ -17,6 +17,10 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(new ApiError("User not found.", HttpStatus.NOT_FOUND.value()), HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(CategoryNotFoundException.class)
+    public ResponseEntity<ApiError> handlerCategoryNotFoundException(CategoryNotFoundException e,WebRequest webRequest){
+        return new ResponseEntity<>(new ApiError("Category not found.", HttpStatus.NOT_FOUND.value()), HttpStatus.NOT_FOUND);
+    }
 
 
 
