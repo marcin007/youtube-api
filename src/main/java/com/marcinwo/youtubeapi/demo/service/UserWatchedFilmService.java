@@ -30,7 +30,7 @@ public class UserWatchedFilmService {
         return userWatchedFilmRepository.save(userWatchedFilm);
     }
 
-    //TODO NADAL NIE DZIALA USUWANIE
+
     public void deleteWatchedFilmsByUserId(Long id){
         userWatchedFilmRepository.deleteById(id);
     }
