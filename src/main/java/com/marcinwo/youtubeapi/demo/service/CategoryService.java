@@ -2,6 +2,7 @@ package com.marcinwo.youtubeapi.demo.service;
 
 import com.marcinwo.youtubeapi.demo.dto.PatchCategoryDTO;
 import com.marcinwo.youtubeapi.demo.entity.Category;
+import com.marcinwo.youtubeapi.demo.exeption.CategoryNotFoundException;
 import com.marcinwo.youtubeapi.demo.repository.CategoryRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -22,9 +23,9 @@ public class CategoryService {
         return categoryRepository.findAll();
     }
 
-    public Category getCategory(Long id){
+    public Category findCategoryById(Long id){
         return categoryRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("Cant find this category"));
+                .orElseThrow(()-> new CategoryNotFoundException("Category not found."));
     }
 
     public Category postCategory(Category category){
@@ -36,9 +37,8 @@ public class CategoryService {
     }
 
     public Category updateCategoryById(Long id, PatchCategoryDTO patchCategoryDTO){
-        Category category = getCategory(id);
+        Category category = findCategoryById(id);
         category.setName(patchCategoryDTO.getName());
         return categoryRepository.save(category);
-
     }
 }
