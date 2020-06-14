@@ -49,8 +49,9 @@ public abstract class ReplyMapper {
         reply.setComment(comment);
 
         reply.setContent(replyDTO.getContent());
-
-        // TODO: 07.06.2020 uzupelnic
+        reply.setCreatedAt(replyDTO.getCreatedAt());
+        reply.setDislikes(replyDTO.getDislikes());
+        reply.setLikes(replyDTO.getLikes());
 
         return reply;
     }
