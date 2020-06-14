@@ -22,7 +22,10 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
         return new ResponseEntity<>(new ApiError("Category not found.", HttpStatus.NOT_FOUND.value()), HttpStatus.NOT_FOUND);
     }
 
-
+    @ExceptionHandler(ChannelNotFoundException.class)
+    public ResponseEntity<ApiError> handlerChannelNotFoundException(CategoryNotFoundException e, WebRequest webRequest){
+        return new ResponseEntity<>(new ApiError("Channel not found.", HttpStatus.NOT_FOUND.value()), HttpStatus.NOT_FOUND);
+    }
 
 
 }
