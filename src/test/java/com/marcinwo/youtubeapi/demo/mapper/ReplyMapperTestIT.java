@@ -90,7 +90,7 @@ public class ReplyMapperTestIT {
         ReplyDTO replyDTO = new ReplyDTO(userId, commentId, "lala", LocalDateTime.now(), 33, 33);
 
         Reply reply = replyMapper.toReplyEntity(replyDTO);
-        assertEquals("lala", reply.getContent()); //TODO czemu tutaj mam nulla? czy to winna złego mappera?
+        assertEquals("lala", reply.getContent());
         //assertEquals(LocalDateTime.now() ,reply.getCreatedAt());
     }
 
@@ -100,9 +100,9 @@ public class ReplyMapperTestIT {
 
         ReplyDTO replyDTO = replyMapper.toReplyDTO(reply);
 
-        assertEquals(22, replyDTO.getLikes());
-        assertEquals(44, replyDTO.getDislikes());
-        assertEquals("fiki", replyDTO.getContent());
+        assertEquals(reply.getLikes(), replyDTO.getLikes());
+        assertEquals(reply.getDislikes(), replyDTO.getDislikes());
+        assertEquals(reply.getContent(), replyDTO.getContent());
     }
 
 
