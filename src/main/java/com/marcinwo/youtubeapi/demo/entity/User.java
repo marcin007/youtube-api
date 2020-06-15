@@ -41,10 +41,10 @@ public class User extends AbstractEntity {
     @OneToMany(mappedBy = "user")
     private Set<Reply> replies = new HashSet<>();
 
-    public User(String jacek, String jakcowski, String relic, String qwe) {
-        this.firstName = jacek;
-        this.lastName = jakcowski;
-        this.userName = relic;
-        this.password = qwe;
+    public User(String firstName, String lastName, String userName, String password) {
+        this.firstName = firstName;
+        this.lastName = lastName;
+        this.userName = userName;
+        this.password = password;
     }
 }
