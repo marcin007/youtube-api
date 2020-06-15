@@ -9,10 +9,6 @@ import java.util.List;
 @Repository
 public interface ChannelRepository extends JpaRepository<Channel, Long> {
 
-    // JPQL - java persistence query language
-//    @Query(value = "select a.channels From User a where a.id = ?1" )
-//    List<Channel> findAllByUser_Id(Long id);
-
     List<Channel> findAllByUser_Id(Long id);
 
 }
