@@ -33,9 +33,6 @@ public class UserControllerTestIT {
     @Autowired
     private UserService userService;
 
-    @Autowired
-    private UserMapper userMapper;
-
     @Test
     public void given_UserNotExist_when_PatchUser_then222_NotFound222() throws Exception {
         userService.deleteUserById(22L);

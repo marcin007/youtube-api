@@ -1,11 +1,9 @@
 package com.marcinwo.youtubeapi.demo.controller;
 
 import com.marcinwo.youtubeapi.demo.ApiInformation;
-import com.marcinwo.youtubeapi.demo.dto.ChannelDTO;
 import com.marcinwo.youtubeapi.demo.dto.PatchUserDTO;
 import com.marcinwo.youtubeapi.demo.dto.UserDTO;
 import com.marcinwo.youtubeapi.demo.entity.User;
-import com.marcinwo.youtubeapi.demo.mapper.ChannelMapper;
 import com.marcinwo.youtubeapi.demo.mapper.UserMapper;
 import com.marcinwo.youtubeapi.demo.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -38,7 +36,7 @@ public class UserController {
 
     @PostMapping("/users")
     public UserDTO postUser(@RequestBody UserDTO user){
-        return userMapper.toUserDTO(userService.postUser(userMapper.toUserEntity(user)));
+        return userMapper.toUserDTO(userService.saveUser(userMapper.toUserEntity(user)));
     }
 
     @DeleteMapping("/users/{id}")

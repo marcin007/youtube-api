@@ -1,6 +1,5 @@
 package com.marcinwo.youtubeapi.demo.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.marcinwo.youtubeapi.demo.ExampleData;
 import com.marcinwo.youtubeapi.demo.JsonUtils;
 import com.marcinwo.youtubeapi.demo.dto.PatchUserDTO;
@@ -44,7 +43,7 @@ public class UserControllerTest {
     @MockBean
     private UserMapper userMapper;
 
-    @Test
+    @Test//ok
     public void getUsersTest() throws Exception {
         //given
         List<User> users = List.of(
@@ -60,7 +59,7 @@ public class UserControllerTest {
 
         //when
         when(userService.findAll()).thenReturn(users);
-        when(userMapper.toUserDTO(anyCollection())).thenReturn(userDTOS);
+        when(userMapper.toUserDTO(users)).thenReturn(userDTOS);
 
         //then
         mockMvc.perform(get("/users"))
@@ -69,17 +68,18 @@ public class UserControllerTest {
                 .andExpect(content().json(JsonUtils.toJsonString(userDTOS)));
     }
 
-    @Test
+    @Test //ok
     public void postUserTest() throws Exception { //
         //given
-        UserDTO userDTOBeforeSave = new UserDTO(1L, "231", "23", "edwr", "32");
+        UserDTO userDTOBeforeSave = new UserDTO("231", "23", "edwr", "32");
         UserDTO userDTOAfterSave = new UserDTO(1L, "231", "23", "edwr", "32");
 
 
         //when
-        when(userMapper.toUserEntity(userDTOBeforeSave)).thenReturn(ExampleData.user());
-        when(userService.postUser(ExampleData.user())).thenReturn(ExampleData.user());
-        when(userMapper.toUserDTO(ExampleData.user())).thenReturn(userDTOAfterSave);
+        User user = ExampleData.user();
+        when(userMapper.toUserEntity(any(UserDTO.class))).thenReturn(user);
+        when(userService.saveUser(user)).thenReturn(user);
+        when(userMapper.toUserDTO(user)).thenReturn(userDTOAfterSave);
 
         //then
         mockMvc.perform(post("/users")
@@ -88,14 +88,13 @@ public class UserControllerTest {
                 .accept(MediaType.APPLICATION_JSON)
                 .characterEncoding("utf-8"))
 
-
                 .andDo(print())
                 .andExpect(status().isOk())
-                .andExpect(jsonPath("$.name").value("user1"))
+                .andExpect(jsonPath("$.firstName").value("231"))
                 .andExpect(content().json(JsonUtils.toJsonString(userDTOAfterSave)));
     }
 
-    @Test
+    @Test//ok
     public void given_UserNotExist_when_PatchUser_then_NotFound() throws Exception {
         PatchUserDTO patchUserDTO = new PatchUserDTO("ala", "ala","1234");
 
