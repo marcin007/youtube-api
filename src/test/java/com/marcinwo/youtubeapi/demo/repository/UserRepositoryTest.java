@@ -72,16 +72,6 @@ public class UserRepositoryTest {
         assertThat(users.get(1).getFirstName()).isEqualTo(user2.getFirstName());
     }
 
-    @Test(expected = RuntimeException.class)
-    public void testException() {
-        // given
-
-        // when
-
-        //przyklad
-        // userService.findByUsername("ibwifyeb").getName();
-        throw new RuntimeException();
-    }
 
 
 }
