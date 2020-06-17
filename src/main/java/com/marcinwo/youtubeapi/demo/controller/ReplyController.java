@@ -24,15 +24,16 @@ public class ReplyController {
 
 
     @GetMapping("/replies")
-    public Set<ReplyDTO> getReplies(){
+    public List<ReplyDTO> getReplies(){
         return replyMapper.toReplyDTO(replyService.getReplies());
     }
 
 
     @GetMapping("/comments/{id}/replies")
-    public Set<ReplyDTO> getReply(@PathVariable Long id){
+    public List<ReplyDTO> getRepliesByCommentId(@PathVariable Long id){
         return replyMapper.toReplyDTO(replyService.getReply(id));
     }
+
 
     @PostMapping("/replies")
     public ReplyDTO postReply(@RequestBody ReplyDTO replyDTO){

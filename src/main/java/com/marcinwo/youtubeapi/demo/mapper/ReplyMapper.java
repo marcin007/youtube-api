@@ -14,7 +14,7 @@ import org.mapstruct.Mappings;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.Collection;
-import java.util.Set;
+import java.util.List;
 
 @Mapper(componentModel = "spring")
 public abstract class ReplyMapper {
@@ -37,7 +37,7 @@ public abstract class ReplyMapper {
             @Mapping(target = "commentId", source ="comment.id")
     })
     public abstract ReplyDTO toReplyDTO(Reply reply);
-    public abstract Set<ReplyDTO> toReplyDTO(Collection<Reply> reply);
+    public abstract List<ReplyDTO> toReplyDTO(Collection<Reply> reply);
 
     public Reply toReplyEntity(ReplyDTO replyDTO){
         Reply reply = new Reply();
