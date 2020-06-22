@@ -40,7 +40,7 @@ public class ChannelControllerTest {
     private ChannelMapper channelMapper;
 
     @Test
-    public void getChannels() throws Exception {
+    public void getChannelsTest() throws Exception {
         //given
         List<Channel> channels = List.of(
                 new Channel("Testoviron", "Kompendium wiedzy o polakach", new User("Stanislaw", "Testo", "testoviron", "1234",
@@ -63,5 +63,23 @@ public class ChannelControllerTest {
                 .andDo(print())
                 .andExpect(content().string(CoreMatchers.containsString("Toczek")))
                 .andExpect(content().json(JsonUtils.toJsonString(channelDTOS)));
+    }
+
+    @Test
+    public void getChannelByIdTest() throws Exception {
+
+        Channel channel = new Channel("Biedron", "Kompendium wiedzy o biedronkach", new User(), Set.of(new Film()));
+        channel.setId(1L);
+        ChannelDTO channelDTO = new ChannelDTO(1L, "BiedronDTO", "Kompendium wiedzy o biedronkach DTO", "Agata Doda DTO");
+
+        when(channelService.getChannelById(channel.getId())).thenReturn(channel);
+        when(channelMapper.toChannelDTO(channel)).thenReturn(channelDTO);
+
+        mockMvc.perform(get("/channels/1"))
+                .andDo(print())
+                .andExpect(content().json(JsonUtils.toJsonString(channelDTO)));
+
+
+
     }
 }
