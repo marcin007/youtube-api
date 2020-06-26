@@ -25,10 +25,6 @@ public class UserRepositoryTest {
     @Autowired
     private UserRepository userRepository;
 
-    // given - wejscie
-    // when - zachowanie
-    // then - oczekiwane wyjscie
-
     @Before
     public void beforeEach() {
         userRepository.deleteAll();
@@ -66,12 +62,22 @@ public class UserRepositoryTest {
         String lastname = "Adamowski1";
         List<User> users = userRepository.findAllByLastName(lastname);
 
-
         assertThat(users.size() == 2).isTrue();
         assertThat(users.get(0).getFirstName()).isEqualTo(user1.getFirstName());
         assertThat(users.get(1).getFirstName()).isEqualTo(user2.getFirstName());
     }
 
+    @Test//ok
+    public void given_userNotExist_when_findByUserName_then_returnEmptyOptional(){
+        Optional<User> user = userRepository.findByUserName("username");
 
+        assertThat(user).isEmpty();
+    }
 
+    @Test//ok
+    public void given_usersNotExist_when_findAllByLastName_then_returnEmptyUserList(){
+        List<User> user = userRepository.findAllByLastName("LastName");
+
+        assertThat(user).isEmpty();
+    }
 }
