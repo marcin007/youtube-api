@@ -36,9 +36,8 @@ public class ReplyRepositoryTest {
         replyRepository.deleteAll();
     }
 
-    @Test
-    public void whenFindByCommentId_thenReturnReply(){//ok
-
+    @Test//ok
+    public void whenFindByCommentId_thenReturnReply(){
         Reply reply =  new Reply(new User(), new Comment(), "content", LocalDateTime.now(), LocalDateTime.now(), 22,22);
 
         testEntityManager.persist(reply);
@@ -48,11 +47,12 @@ public class ReplyRepositoryTest {
         List<Reply> replies = replyRepository.findAllByCommentId(1L);
 
         assertThat(replies.get(0).getContent().equals("content"));
-
+        assertThat(replies).hasSize(1);
+        assertThat(replies.get(0)).isEqualTo(reply);
     }
 
-    @Test
-    public void whenFindByUsername_thenReturnReply(){//ok
+    @Test//ok
+    public void whenFindByUsername_thenReturnReply(){
         Reply reply =  new Reply(new User("jacek", "jakcowski", "relic", "qwe"), new Comment(), "con", LocalDateTime.now(), LocalDateTime.now(), 22,22);
         Reply reply2 =  new Reply(new User("kkk", "aaa", "maxkarim", "qwe"), new Comment(), "con", LocalDateTime.now(), LocalDateTime.now(), 22,22);
 
@@ -65,4 +65,19 @@ public class ReplyRepositoryTest {
 
         assertThat(replies.get(0).getUser().getUserName().equals(username));
     }
+
+    @Test//ok
+    public void given_commentHasNoReply_when_findAllByCommentId_then_returnEmptyReplyList(){
+        List<Reply> replies = replyRepository.findAllByCommentId(1L);
+
+        assertThat(replies).isNotEmpty();
+    }
+
+    @Test
+    public void given_replyHasNoUserWithThatUserName_when_findAllByUserName_then_returnEmptyReplyList(){
+        List<Reply> replies = replyRepository.findAllByUser_UserName("username");
+
+        assertThat(replies).isEmpty();
+    }
+
 }
