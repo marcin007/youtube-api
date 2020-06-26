@@ -23,6 +23,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 import java.time.LocalDateTime;
 import java.time.Month;
 import java.time.format.DateTimeFormatter;
+import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
 
@@ -31,7 +32,7 @@ import static org.mockito.ArgumentMatchers.matches;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.*;
 
 @RunWith(SpringRunner.class)
 @WebMvcTest(CommentController.class)
@@ -46,7 +47,7 @@ public class CommentControllerTest {
     @MockBean
     private CommentMapper commentMapper;
 
-    @Test
+    @Test//ok
     public void getCommentTest() throws Exception {
         //given
         List<Comment> comment = List.of(
@@ -55,7 +56,7 @@ public class CommentControllerTest {
                 new Comment(new Film(), new User(), LocalDateTime.now(), LocalDateTime.now(), "Komentarz 1", 2, 66, Set.of(new Reply()))
         );
 
-        List<CommentDTO> commentDTOS = List.of( //TODO czemu nie dziala parsowanie tego localdatetime??????????
+        List<CommentDTO> commentDTOS = List.of(
                 new CommentDTO(2L, 2L, 1L, "Komentarz 1 DTO", 22, 33),
                 new CommentDTO(3L, 3L, 3L, "Komentarz 2 DTO", 22, 33),
                 new CommentDTO(1L, 1L, 2L,
@@ -64,10 +65,11 @@ public class CommentControllerTest {
                         "Komentarz 3 DTO", 22, 33)
         );
 
-
         //when
         when(commentService.getComments()).thenReturn(comment);
         when(commentMapper.toCommentDTO(anyCollection())).thenReturn(commentDTOS);
+
+        System.out.println(JsonUtils.toJsonString(commentDTOS));
 
         //then
         mockMvc.perform(get("/comments"))
@@ -75,4 +77,28 @@ public class CommentControllerTest {
                 .andExpect(content().string(CoreMatchers.containsString("K")))
                 .andExpect(content().json(JsonUtils.toJsonString(commentDTOS)));
     }
+
+    @Test
+    public void getCommentsByFilmId() throws Exception {
+
+
+        List<Comment> comments = List.of(
+                new Comment(new Film(), new User(), LocalDateTime.now(), LocalDateTime.now(), "con1", 12, 34, new HashSet<>()),
+                new Comment(new Film(), new User(), LocalDateTime.now(), LocalDateTime.now(), "con2", 12, 34, new HashSet<>()));
+
+        List<CommentDTO> commentDTO = List.of(
+                new CommentDTO(2L, 3L, 1L, "con1", 22, 33),
+                new CommentDTO(2L, 3L, 1L, "con2", 22, 33)
+        );
+
+        when(commentService.getCommentsByFilmId(1L)).thenReturn(comments);
+        when(commentMapper.toCommentDTO(comments)).thenReturn(commentDTO);
+
+        mockMvc.perform(get("/films/1/comments"))
+                .andDo(print())
+                .andExpect(status().isOk())
+                .andExpect(content().json(JsonUtils.toJsonString(commentDTO)));
+
+    }
+
 }
