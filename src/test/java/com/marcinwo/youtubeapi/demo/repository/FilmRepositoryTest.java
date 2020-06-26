@@ -37,12 +37,13 @@ public class FilmRepositoryTest {
         filmRepository.deleteAll();
     }
 
-    @Test
-    public void given_channelHasFilms_when_findAllByChannelId_then_returnFilmList() {//todo ok??
+    @Test//ok
+    public void given_channelHasFilms_when_findAllByChannelId_then_returnFilmList() {
         Channel myChannel = new Channel("aaa1", "ooo1", new User(), new HashSet<>());
         Film film1 = new Film(LocalDateTime.now(), "Sarnie zniwo", "Kino akjci", "www.qwe.pl", 22, myChannel, new HashSet<>(), new Category());
         Film film2 = new Film(LocalDateTime.now(), "Sarnie zniwo2", "Kino akjci2", "www.qwe.pl2", 222, myChannel, new HashSet<>(), new Category());
 
+        testEntityManager.persistAndFlush(myChannel);
         testEntityManager.persistAndFlush(film1);
         testEntityManager.persistAndFlush(film2);
 
@@ -52,19 +53,11 @@ public class FilmRepositoryTest {
         assertThat(films).size().isEqualTo(2);
     }
 
-    @Test
+    @Test//ok
     public void given_channelHasNoFilms_when_findAllByChannelId_then_returnEmptyFilmList() {
-
-        User myUser = ExampleData.user();
-        Channel channel = new Channel(null, null, myUser, null);
-        Film film = new Film(null, null, null, null, NULL, channel, null, null);
-
-        testEntityManager.persistAndFlush(film);
-
         List<Film> films = filmRepository.findAllByChannel_Id(1L);
 
         assertThat(films).isEmpty();
-
     }
 
 }
