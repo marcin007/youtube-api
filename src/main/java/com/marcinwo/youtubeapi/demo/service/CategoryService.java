@@ -33,7 +33,9 @@ public class CategoryService {
     }
 
     public void deleteCategory(Long id){
-        categoryRepository.deleteById(id);
+        if (categoryRepository.existsById(id)) {
+            categoryRepository.deleteById(id);
+        }
     }
 
     public Category updateCategoryById(Long id, PatchCategoryDTO patchCategoryDTO){
