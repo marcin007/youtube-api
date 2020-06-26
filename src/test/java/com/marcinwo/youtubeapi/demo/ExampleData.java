@@ -13,10 +13,7 @@ public class ExampleData {
     }
 
     public static User user() {
-        return new User(
-                "Adam", "Kowalski",
-                "akowalski", "pass",
-                new HashSet<>(), new HashSet<>(), new HashSet<>()
+        return new User("Adam", "Kowalski", "akowalski", "pass", new HashSet<>(), new HashSet<>(), new HashSet<>()
         );
     }
 
@@ -31,8 +28,16 @@ public class ExampleData {
         );
     }
 
-    public static Channel channel() {
+    public static Channel channel1() {
         return new Channel("channel1", "channel desc", user(), new HashSet<>());
+    }
+
+    public static Channel channel2() {
+        return new Channel("channel2", "channel desc", user(), new HashSet<>());
+    }
+
+    public static Channel channel3() {
+        return new Channel("channel3", "channel desc", user(), new HashSet<>());
     }
 
     public static Category categoryThriller() {
