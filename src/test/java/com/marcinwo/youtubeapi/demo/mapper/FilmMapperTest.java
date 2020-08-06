@@ -45,6 +45,5 @@ public class FilmMapperTest {
         );
 
         List<FilmDTO> filmDTOS = filmMapper.toFilmDTO(films);
-        //assertEquals(filmDTOS.get(0).getChannel());
     }
 }

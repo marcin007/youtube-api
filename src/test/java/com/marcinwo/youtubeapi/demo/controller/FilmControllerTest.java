@@ -41,7 +41,7 @@ public class FilmControllerTest {
     private FilmMapper filmMapper;
 
     @Test
-    public void getFilmsTest() throws Exception {
+    public void getFilmsTest() throws Exception {//ok
         List<Film> films = List.of(
                 new Film(LocalDateTime.now(), "Wsciekle piesci weza1", "Film akcji", "www.omg.pl",
                         233, new Channel(), Set.of(new Comment()), new Category()),
@@ -57,16 +57,13 @@ public class FilmControllerTest {
         when(filmService.getFilms()).thenReturn(films);
         when(filmMapper.toFilmDTO(anyCollection())).thenReturn(filmDTOS);
 
-
-
             mockMvc.perform(get("/films"))
                     .andDo(print())
                     .andExpect(content().string(CoreMatchers.containsString("Horror")))
                     .andExpect(status().isOk())
                     .andExpect(content().json(JsonUtils.toJsonString(filmDTOS)));
-
-
-
     }
+
+
 
 }

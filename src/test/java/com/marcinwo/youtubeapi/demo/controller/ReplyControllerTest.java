@@ -19,7 +19,6 @@ import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
 
 import java.time.LocalDateTime;
-import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 
@@ -87,7 +86,7 @@ public class ReplyControllerTest {
                 new ReplyDTO(2L, comment.getId(), "content2", 56, 78));
 
 
-        when(replyService.getReply(1L)).thenReturn(replies);
+        when(replyService.getRepliesByCommentId(1L)).thenReturn(replies);
         when(replyMapper.toReplyDTO(replies)).thenReturn(replyDTOS);
 
         mockMvc.perform(get("/comments/1/replies"))

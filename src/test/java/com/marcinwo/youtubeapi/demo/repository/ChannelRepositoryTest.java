@@ -14,18 +14,16 @@ import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
 import static org.assertj.core.api.Assertions.assertThat;
 
-
-
-
 import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import static org.junit.Assert.*;
 
+@ActiveProfiles("test")
 @DataJpaTest
 @RunWith(SpringRunner.class)
 public class ChannelRepositoryTest {
@@ -41,8 +39,8 @@ public class ChannelRepositoryTest {
         channelRepository.deleteAll();
     }
 
-    @Test
-    public void given_userHasChannels_when_findAllByUserId_then_returnChannels() {//ok
+    @Test//ok
+    public void given_userHasChannels_when_findAllByUserId_then_returnChannels() {
         User myUser = ExampleData.user();
 
         Channel myChannel1 = new Channel("aaa1", "ooo1", myUser, new HashSet<>());
@@ -70,8 +68,6 @@ public class ChannelRepositoryTest {
         List<Channel> channels = channelRepository.findAllByUser_Id(1L);
 
         assertThat(channels).isEmpty();
-
-        System.out.println("channels");
     }
 
 

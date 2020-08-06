@@ -12,6 +12,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.http.MediaType;
+import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
@@ -24,6 +25,7 @@ import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
 
+@ActiveProfiles("test")
 @ContextConfiguration(classes = YoutubeApiApplication.class)
 @RunWith(SpringRunner.class)
 @AutoConfigureMockMvc
@@ -33,15 +35,18 @@ public class CategoryControllerTestIT {
     @Autowired
     private MockMvc mockMvc;
 
-    @Autowired
-    private CategoryMapper categoryMapper;
 
     @Autowired
     private CategoryService categoryService;
 
-    @Test// TODO nie działa CZEMU??
-    public void given_CategoryNotFound_when_PatchCategory_then_NotFound() throws Exception {
-        categoryService.findCategoryById(22L);
+    @Test//ok
+    public void test() throws Exception {
+        categoryService.deleteCategory(22L);
+    }
+
+    @Test//ok
+    public void given_CategoryNotExists_when_PatchCategory_then_NotFound() throws Exception {
+        categoryService.deleteCategory(22L);
 
         PatchCategoryDTO patchCategoryDTO = new PatchCategoryDTO("category test");
 

@@ -64,6 +64,7 @@ public class ReplyRepositoryTest {
         List<Reply> replies = replyRepository.findAllByUser_UserName(username);
 
         assertThat(replies.get(0).getUser().getUserName().equals(username));
+        assertThat(replies.get(1).getUser().getUserName().equals(username));
     }
 
     @Test//ok
