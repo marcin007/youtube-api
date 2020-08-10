@@ -24,7 +24,8 @@ import org.springframework.test.web.servlet.MockMvc;
 import java.util.List;
 import java.util.Set;
 
-import static org.mockito.ArgumentMatchers.*;
+import static org.mockito.ArgumentMatchers.any;
+import static org.mockito.ArgumentMatchers.eq;
 import static org.mockito.Mockito.when;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
@@ -43,7 +44,7 @@ public class UserControllerTest {
     @MockBean
     private UserMapper userMapper;
 
-    @Test//ok
+    @Test
     public void getUsersTest() throws Exception {
         //given
         List<User> users = List.of(
@@ -68,7 +69,7 @@ public class UserControllerTest {
                 .andExpect(content().json(JsonUtils.toJsonString(userDTOS)));
     }
 
-    @Test //ok
+    @Test
     public void postUserTest() throws Exception { //
         //given
         UserDTO userDTOBeforeSave = new UserDTO("231", "23", "edwr", "32");
@@ -94,9 +95,9 @@ public class UserControllerTest {
                 .andExpect(content().json(JsonUtils.toJsonString(userDTOAfterSave)));
     }
 
-    @Test//ok
+    @Test
     public void given_UserNotExist_when_PatchUser_then_NotFound() throws Exception {
-        PatchUserDTO patchUserDTO = new PatchUserDTO("ala", "ala","1234");
+        PatchUserDTO patchUserDTO = new PatchUserDTO("ala", "ala", "1234");
 
         when(userService.findUserById(22L)).thenThrow(new UserNotFoundException("user not found"));
         when(userService.updateUserById(eq(22L), any(PatchUserDTO.class))).thenCallRealMethod();

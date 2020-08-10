@@ -7,7 +7,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
-import java.util.Set;
 
 @RestController
 public class ReplyController {
@@ -31,7 +30,7 @@ public class ReplyController {
 
     @GetMapping("/comments/{id}/replies")
     public List<ReplyDTO> getRepliesByCommentId(@PathVariable Long id){
-        return replyMapper.toReplyDTO(replyService.getReply(id));
+        return replyMapper.toReplyDTO(replyService.getRepliesByCommentId(id));
     }
 
 

@@ -5,6 +5,7 @@ import com.marcinwo.youtubeapi.demo.entity.*;
 
 import java.time.LocalDateTime;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 public class ExampleData {
@@ -76,6 +77,28 @@ public class ExampleData {
                 Set.of(new Reply()));
     }
 
+    public static List<Comment> comments() {
+        return List.of(
+                new Comment(
+                        new Film(),
+                        new User(),
+                        LocalDateTime.now(),
+                        LocalDateTime.now(),
+                        "comment content1",
+                        11,
+                        22,
+                        Set.of(new Reply())),
+                new Comment(
+                        new Film(),
+                        new User(),
+                        LocalDateTime.now(),
+                        LocalDateTime.now(),
+                        "comment content2",
+                        44,
+                        55,
+                        Set.of(new Reply())));
+    }
+
 
     public static Reply reply() {
         return new Reply(
@@ -84,5 +107,21 @@ public class ExampleData {
                         new User("Adam", "Kowalski", "akowalski", "pass", new HashSet<>(), new HashSet<>(), new HashSet<>()), LocalDateTime.now(), LocalDateTime.now(),
                         "comment content", 44, 55, Set.of(new Reply())),
                 "reply content", LocalDateTime.now(), LocalDateTime.now(), 44, 33);
+    }
+
+
+    public static List<Reply> replies(){
+        return List.of(new Reply(
+                new User("Adam", "Kowalski", "akowalski", "pass", new HashSet<>(), new HashSet<>(), new HashSet<>()),
+                new Comment(new Film(LocalDateTime.now(), "Matrix", "costam", "url", 120, new Channel("channel1", "channel desc", new User(), new HashSet<>()), new HashSet<>(), new Category()),
+                        new User("Adam", "Kowalski", "akowalski", "pass", new HashSet<>(), new HashSet<>(), new HashSet<>()), LocalDateTime.now(), LocalDateTime.now(),
+                        "comment content", 44, 55, Set.of(new Reply())),
+                "reply content", LocalDateTime.now(), LocalDateTime.now(), 44, 33),
+                new Reply(
+                        new User("Adam", "Kowalski", "akowalski", "pass", new HashSet<>(), new HashSet<>(), new HashSet<>()),
+                        new Comment(new Film(LocalDateTime.now(), "Matrix", "costam", "url", 120, new Channel("channel1", "channel desc", new User(), new HashSet<>()), new HashSet<>(), new Category()),
+                                new User("Adam", "Kowalski", "akowalski", "pass", new HashSet<>(), new HashSet<>(), new HashSet<>()), LocalDateTime.now(), LocalDateTime.now(),
+                                "comment content", 44, 55, Set.of(new Reply())),
+                        "reply content", LocalDateTime.now(), LocalDateTime.now(), 44, 33));
     }
 }

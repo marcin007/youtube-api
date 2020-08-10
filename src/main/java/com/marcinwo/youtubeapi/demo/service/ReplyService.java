@@ -22,7 +22,7 @@ public class ReplyService {
         return replyRepository.findAll();
     }
 
-    public List<Reply> getReply(Long id){
+    public List<Reply> getRepliesByCommentId(Long id){
         return replyRepository.findAllByCommentId(id);
     }
 

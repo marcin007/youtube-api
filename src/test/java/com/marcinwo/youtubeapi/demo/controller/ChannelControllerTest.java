@@ -3,7 +3,6 @@ package com.marcinwo.youtubeapi.demo.controller;
 import com.marcinwo.youtubeapi.demo.JsonUtils;
 import com.marcinwo.youtubeapi.demo.dto.ChannelDTO;
 import com.marcinwo.youtubeapi.demo.entity.*;
-import com.marcinwo.youtubeapi.demo.exeption.ChannelNotFoundException;
 import com.marcinwo.youtubeapi.demo.exeption.UserNotFoundException;
 import com.marcinwo.youtubeapi.demo.mapper.ChannelMapper;
 import com.marcinwo.youtubeapi.demo.service.ChannelService;
@@ -15,9 +14,6 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import java.util.List;
 import java.util.Set;
@@ -67,7 +63,7 @@ public class ChannelControllerTest {
                 .andExpect(content().json(JsonUtils.toJsonString(channelDTOS)));
     }
 
-    @Test //todo ok??
+    @Test
     public void getChannelByIdTest() throws Exception {
 
         Channel channel = new Channel("Biedron", "Channel 1 desc", new User(), Set.of(new Film()));
@@ -82,7 +78,7 @@ public class ChannelControllerTest {
                 .andExpect(content().json(JsonUtils.toJsonString(channelDTO)));
     }
 
-    @Test//todo ok ????
+    @Test
     public void given_UserExist_when_getChannelsByUserId_then_returnChannelList() throws Exception {
         User user = new User("Stanislaw", "Testo", "testoviron", "1234");
         user.setId(1L);
@@ -105,7 +101,7 @@ public class ChannelControllerTest {
                 .andExpect(content().json(JsonUtils.toJsonString(channelDTOS)));
     }
 
-    @Test //todo  ok ???????
+    @Test
     public void given_UserNotExist_when_getChannelsByUserId_then_NotFound() throws Exception {
 
         when(channelService.getChannelsByUserId(22L)).thenThrow(new UserNotFoundException("User not found."));
@@ -114,9 +110,6 @@ public class ChannelControllerTest {
                 .andExpect(status().isNotFound())
                 .andExpect(jsonPath("$.error").value("User not found."));
     }
-
-    // todo DELETE ????
-
 
 
 }

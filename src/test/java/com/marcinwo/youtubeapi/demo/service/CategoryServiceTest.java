@@ -1,14 +1,11 @@
 package com.marcinwo.youtubeapi.demo.service;
 
-import com.marcinwo.youtubeapi.demo.ExampleData;
 import com.marcinwo.youtubeapi.demo.dto.PatchCategoryDTO;
 import com.marcinwo.youtubeapi.demo.entity.Category;
 import com.marcinwo.youtubeapi.demo.exeption.CategoryNotFoundException;
 import com.marcinwo.youtubeapi.demo.repository.CategoryRepository;
-import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
-import org.mockito.Mockito;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;

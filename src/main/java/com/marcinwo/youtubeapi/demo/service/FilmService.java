@@ -1,6 +1,7 @@
 package com.marcinwo.youtubeapi.demo.service;
 
 import com.marcinwo.youtubeapi.demo.entity.Film;
+import com.marcinwo.youtubeapi.demo.exeption.FilmNotFoundException;
 import com.marcinwo.youtubeapi.demo.repository.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -23,7 +24,7 @@ public class FilmService {
 
     public Film getFilm(Long id){
         return filmRepository.findById(id)
-                .orElseThrow(()-> new RuntimeException("Cant find."));
+                .orElseThrow(()-> new FilmNotFoundException("Cant find."));
     }
 
     public List<Film> getFilmsByChannelId(Long id){

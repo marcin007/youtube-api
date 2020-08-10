@@ -3,21 +3,17 @@ package com.marcinwo.youtubeapi.demo.mapper;
 import com.marcinwo.youtubeapi.demo.ExampleData;
 import com.marcinwo.youtubeapi.demo.dto.UserDTO;
 import com.marcinwo.youtubeapi.demo.entity.User;
-import org.junit.Assert;
 import org.junit.Test;
-import org.junit.runner.RunWith;
-import org.springframework.boot.test.context.SpringBootTest;
-import org.springframework.test.context.junit4.SpringRunner;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 
 public class UserMapperTest {
 
-    private UserMapper  userMapper = new UserMapperImpl();
+    private UserMapper userMapper = new UserMapperImpl();
 
     @Test
-    public void toUserDtoTest(){
+    public void toUserDtoTest() {
         User user = ExampleData.user();
 
         UserDTO userDTO = userMapper.toUserDTO(user);
@@ -30,7 +26,7 @@ public class UserMapperTest {
     }
 
     @Test
-    public void toUserEntityTest(){
+    public void toUserEntityTest() {
         User user = ExampleData.user();
 
         UserDTO userDTO = userMapper.toUserDTO(user);
@@ -42,6 +38,5 @@ public class UserMapperTest {
         assertEquals(user.getId(), userDTO.getId());
     }
 
-    //dla kolekcji List<UserDTO> toUserDTO
 
 }

@@ -4,11 +4,9 @@ import com.marcinwo.youtubeapi.demo.ExampleData;
 import com.marcinwo.youtubeapi.demo.entity.Comment;
 import com.marcinwo.youtubeapi.demo.entity.Reply;
 import com.marcinwo.youtubeapi.demo.repository.ReplyRepository;
-import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
@@ -43,7 +41,7 @@ public class ReplyServiceTest {
     }
 
     @Test
-    public void given_repliesNotExist_when_getReplies_then_returnEmptyList(){
+    public void given_repliesNotExist_when_getReplies_then_returnEmptyList() {
         List<Reply> replyList = new ArrayList<>();
         when(replyRepository.findAll()).thenReturn(replyList);
 
@@ -53,7 +51,7 @@ public class ReplyServiceTest {
     }
 
     @Test
-    public void given_commentHasReplies_when_getRepliesByCommentId_then_returnReplyList(){
+    public void given_commentHasReplies_when_getRepliesByCommentId_then_returnReplyList() {
         Comment comment = new Comment();
         comment.setId(1L);
         List<Reply> replyList = ExampleData.replies();
@@ -68,7 +66,7 @@ public class ReplyServiceTest {
     }
 
     @Test
-    public void given_commentHasNoReplies_when_getRepliesByCommentId_then_returnEmptyReplyList(){
+    public void given_commentHasNoReplies_when_getRepliesByCommentId_then_returnEmptyReplyList() {
         List<Reply> replyList = new ArrayList<>();
         when(replyRepository.findAllByCommentId(1L)).thenReturn(replyList);
 
@@ -78,7 +76,7 @@ public class ReplyServiceTest {
     }
 
     @Test
-    public void given_replyExist_when_postReply_then_saveReply(){
+    public void given_replyExist_when_postReply_then_saveReply() {
         Reply reply = ExampleData.reply();
 
         when(replyRepository.save(reply)).thenReturn(reply);
@@ -87,8 +85,6 @@ public class ReplyServiceTest {
 
         assertThat(postReply).isEqualTo(reply);
     }
-
-
 
 
 }

@@ -1,10 +1,8 @@
 package com.marcinwo.youtubeapi.demo.controller;
 
-import com.fasterxml.jackson.core.JsonProcessingException;
 import com.marcinwo.youtubeapi.demo.JsonUtils;
 import com.marcinwo.youtubeapi.demo.YoutubeApiApplication;
 import com.marcinwo.youtubeapi.demo.dto.PatchCategoryDTO;
-import com.marcinwo.youtubeapi.demo.mapper.CategoryMapper;
 import com.marcinwo.youtubeapi.demo.service.CategoryService;
 import org.junit.Test;
 import org.junit.runner.RunWith;
@@ -16,11 +14,8 @@ import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.ContextConfiguration;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
-import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
-import org.springframework.test.web.servlet.result.MockMvcResultHandlers;
-import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
-import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.*;
+import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.patch;
 import static org.springframework.test.web.servlet.result.MockMvcResultHandlers.print;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.jsonPath;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.status;
@@ -39,12 +34,12 @@ public class CategoryControllerTestIT {
     @Autowired
     private CategoryService categoryService;
 
-    @Test//ok
+    @Test
     public void test() throws Exception {
         categoryService.deleteCategory(22L);
     }
 
-    @Test//ok
+    @Test
     public void given_CategoryNotExists_when_PatchCategory_then_NotFound() throws Exception {
         categoryService.deleteCategory(22L);
 

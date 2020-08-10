@@ -6,7 +6,6 @@ import com.marcinwo.youtubeapi.demo.entity.Film;
 import com.marcinwo.youtubeapi.demo.entity.User;
 import com.marcinwo.youtubeapi.demo.exeption.FilmNotFoundException;
 import com.marcinwo.youtubeapi.demo.repository.FilmRepository;
-import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -54,7 +53,7 @@ public class FilmServiceTest {
     }
 
     @Test
-    public void given_filmsNotExist_when_getFilms_then_returnEmptyFilmList(){
+    public void given_filmsNotExist_when_getFilms_then_returnEmptyFilmList() {
         List<Film> filmList = new ArrayList<>();
         when(filmRepository.findAll()).thenReturn(filmList);
 
@@ -64,7 +63,7 @@ public class FilmServiceTest {
     }
 
     @Test
-    public void given_filmExist_when_getFilm_then_returnOptionalOfFilm(){
+    public void given_filmExist_when_getFilm_then_returnOptionalOfFilm() {
         Film film = new Film(
                 LocalDateTime.now(), "Matrix", "costam", "url", 120,
                 new Channel("channel1", "channel desc", new User(), new HashSet<>()), new HashSet<>(), new Category()
@@ -79,7 +78,7 @@ public class FilmServiceTest {
     }
 
     @Test(expected = FilmNotFoundException.class)
-    public void given_filmNotExist_when_getFilm_then_filmNotFound(){
+    public void given_filmNotExist_when_getFilm_then_filmNotFound() {
 
         when(filmRepository.findById(1L)).thenThrow(new FilmNotFoundException("film not found"));
 
@@ -87,7 +86,7 @@ public class FilmServiceTest {
     }
 
     @Test
-    public void given_channelHasFilms_when_getFilmsByChannelId_then_returnFilmList(){
+    public void given_channelHasFilms_when_getFilmsByChannelId_then_returnFilmList() {
         Channel channel = new Channel("channel1", "channel desc", new User(), new HashSet<>());
         channel.setId(1L);
 
@@ -109,7 +108,7 @@ public class FilmServiceTest {
     }
 
     @Test
-    public void given_channelHasNoFilms_when_getFilmsByChannelId_then_returnEmptyFilmList(){
+    public void given_channelHasNoFilms_when_getFilmsByChannelId_then_returnEmptyFilmList() {
         List<Film> filmList = new ArrayList<>();
 
         when(filmRepository.findAllByChannel_Id(1L)).thenReturn(filmList);
@@ -118,7 +117,6 @@ public class FilmServiceTest {
 
         assertThat(filmsByChannelId).isEmpty();
     }
-
 
 
 }

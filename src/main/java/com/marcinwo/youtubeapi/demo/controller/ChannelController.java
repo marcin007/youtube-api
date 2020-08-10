@@ -44,7 +44,6 @@ public class ChannelController {
     @PatchMapping("/channels/{id}")
     public ChannelDTO updateChannelById(@PathVariable Long id, @Valid @RequestBody PatchChannelDTO patchChannelDTO){
         return channelMapper.toChannelDTO(channelService.updateChannelById(id, patchChannelDTO));
-
     }
 
     @GetMapping("/users/{id}/channels")

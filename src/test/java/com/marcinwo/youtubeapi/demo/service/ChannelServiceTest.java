@@ -1,13 +1,11 @@
 package com.marcinwo.youtubeapi.demo.service;
 
-import com.marcinwo.youtubeapi.demo.ExampleData;
-import com.marcinwo.youtubeapi.demo.dto.ChannelDTO;
+
 import com.marcinwo.youtubeapi.demo.dto.PatchChannelDTO;
 import com.marcinwo.youtubeapi.demo.entity.Channel;
 import com.marcinwo.youtubeapi.demo.entity.User;
 import com.marcinwo.youtubeapi.demo.exeption.ChannelNotFoundException;
 import com.marcinwo.youtubeapi.demo.repository.ChannelRepository;
-import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +19,6 @@ import java.util.Optional;
 
 import static org.assertj.core.api.Assertions.assertThat;
 import static org.junit.jupiter.api.Assertions.assertNotNull;
-import static org.junit.jupiter.api.Assertions.assertThrows;
 import static org.mockito.Mockito.*;
 
 @RunWith(SpringRunner.class)
@@ -97,7 +94,7 @@ public class ChannelServiceTest {
     }
 
     @Test
-    public void given_userHasNoChannels_when_getUserChannelsById_then_returnEmptyChannelList(){
+    public void given_userHasNoChannels_when_getUserChannelsById_then_returnEmptyChannelList() {
 
         List<Channel> channelsByUserId = channelService.getChannelsByUserId(1L);
 
@@ -105,7 +102,7 @@ public class ChannelServiceTest {
     }
 
     @Test
-    public void given_channelExist_when_save_then_channelIsSaved(){
+    public void given_channelExist_when_save_then_channelIsSaved() {
 
         Channel channel = new Channel("channel1", "channel desc", new User(), new HashSet<>());
 
@@ -118,7 +115,7 @@ public class ChannelServiceTest {
     }
 
     @Test
-    public void given_repositoryHasChannelWithThatName_when_save_then_throwError(){
+    public void given_repositoryHasChannelWithThatName_when_save_then_throwError() {
         Channel channel = new Channel("channel1", "channel desc", new User(), new HashSet<>());
 
         when(channelRepository.save(channel)).thenThrow(new Error("Channel is exist"));
@@ -126,7 +123,7 @@ public class ChannelServiceTest {
     }
 
     @Test(expected = ChannelNotFoundException.class)
-    public void given_repositoryHasChannel_when_deleteChannelById_then_channelNotExist(){
+    public void given_repositoryHasChannel_when_deleteChannelById_then_channelNotExist() {
         Channel channel = new Channel("channel1", "channel desc", new User(), new HashSet<>());
         channel.setId(1L);
 
@@ -142,7 +139,7 @@ public class ChannelServiceTest {
     }
 
     @Test
-    public void given_channelExist_when_updateChannelById_then_descriptionUpdated(){
+    public void given_channelExist_when_updateChannelById_then_descriptionUpdated() {
         User user = new User("Adam", "Kowalski", "akowalski", "pass", new HashSet<>(), new HashSet<>(), new HashSet<>());
         user.setId(1L);
 
@@ -160,7 +157,7 @@ public class ChannelServiceTest {
     }
 
     @Test
-    public void given_channelExist_when_updateChannelById_then_onlyDescriptionUpdated(){
+    public void given_channelExist_when_updateChannelById_then_onlyDescriptionUpdated() {
         Channel channel = mock(Channel.class);
 
         PatchChannelDTO dto = new PatchChannelDTO("channel desc updated");
@@ -176,7 +173,6 @@ public class ChannelServiceTest {
         verify(channel, times(1)).setDescription("channel desc updated");
 
     }
-
 
 
 }

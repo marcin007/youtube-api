@@ -4,19 +4,18 @@ import com.marcinwo.youtubeapi.demo.dto.ChannelDTO;
 import com.marcinwo.youtubeapi.demo.entity.Channel;
 import com.marcinwo.youtubeapi.demo.entity.Film;
 import com.marcinwo.youtubeapi.demo.entity.User;
-import org.junit.Assert;
 import org.junit.Test;
 
 import java.util.Set;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 public class ChannelMapperTest {
 
     private ChannelMapper channelMapper = new ChannelMapperImpl();
 
     @Test
-    public void toChannelDtoTest(){
+    public void toChannelDtoTest() {
         Channel channel = new Channel("komedia", "seriale", new User(), Set.of(new Film()));
 
         ChannelDTO channelDTO = channelMapper.toChannelDTO(channel);
@@ -28,5 +27,4 @@ public class ChannelMapperTest {
 
     }
 
-    // dla kolekcji  toChannelDtoTest(){
 }

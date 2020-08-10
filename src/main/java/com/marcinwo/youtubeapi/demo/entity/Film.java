@@ -34,4 +34,9 @@ public class Film extends AbstractEntity {
     @ManyToOne(cascade = CascadeType.ALL)
     @JoinColumn(name = "category_id", nullable = false)
     private Category category;
+
+    @Override
+    public void setId(Long id) {
+        super.setId(id);
+    }
 }

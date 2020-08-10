@@ -1,4 +1,5 @@
 package com.marcinwo.youtubeapi.demo.controller;
+
 import com.marcinwo.youtubeapi.demo.JsonUtils;
 import com.marcinwo.youtubeapi.demo.dto.CategoryDTO;
 import com.marcinwo.youtubeapi.demo.dto.PatchCategoryDTO;
@@ -14,6 +15,7 @@ import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.http.MediaType;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+
 import java.util.List;
 
 import static org.mockito.ArgumentMatchers.*;
@@ -82,10 +84,8 @@ public class CategoryControllerTest {
     }
 
 
-
-
     @Test
-    public void given_CategoryNotExist_when_PatchCategory_then_NotFound() throws Exception{
+    public void given_CategoryNotExist_when_PatchCategory_then_NotFound() throws Exception {
         PatchCategoryDTO patchCategoryDTO = new PatchCategoryDTO("test category");
 
         when(categoryService.findCategoryById(44L)).thenThrow(new CategoryNotFoundException("category not found."));

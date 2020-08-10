@@ -7,12 +7,7 @@ import lombok.Setter;
 import org.hibernate.annotations.CreationTimestamp;
 
 
-import javax.persistence.Entity;
-import javax.persistence.FetchType;
-import javax.persistence.OneToMany;
-import javax.persistence.Table;
-import java.time.LocalDateTime;
-
+import javax.persistence.*;
 import java.util.HashSet;
 import java.util.Set;
 

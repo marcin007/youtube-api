@@ -10,7 +10,6 @@ import com.marcinwo.youtubeapi.demo.exeption.FilmNotFoundException;
 import com.marcinwo.youtubeapi.demo.exeption.UserNotFoundException;
 import com.marcinwo.youtubeapi.demo.repository.FilmRepository;
 import com.marcinwo.youtubeapi.demo.repository.UserRepository;
-import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -98,7 +97,7 @@ public class CommentMapperTestIT {
     }
 
     @Test
-    public void toCommentDtoTest(){
+    public void toCommentDtoTest() {
 
         Comment comment = new Comment(new Film(), new User(), LocalDateTime.now(), LocalDateTime.now(),
                 "ala", 44, 55, Set.of(new Reply()));
@@ -110,7 +109,7 @@ public class CommentMapperTestIT {
     }
 
     @Test
-    public void toCommentListDtoTest(){
+    public void toCommentListDtoTest() {
         List<Comment> comments = new ArrayList<>(List.of(
                 new Comment(new Film(), new User(), LocalDateTime.now(), LocalDateTime.now(),
                         "ala", 44, 55, Set.of(new Reply())),

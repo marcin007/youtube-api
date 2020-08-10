@@ -22,7 +22,6 @@ import java.time.LocalDateTime;
 import java.util.HashSet;
 import java.util.List;
 
-import static org.assertj.core.internal.bytebuddy.matcher.ElementMatchers.is;
 import static org.mockito.ArgumentMatchers.any;
 import static org.mockito.ArgumentMatchers.anyCollection;
 import static org.mockito.Mockito.when;
@@ -71,7 +70,7 @@ public class ReplyControllerTest {
                 .andExpect(content().json(JsonUtils.toJsonString(replyDTOS)));
     }
 
-    @Test//todo ok?
+    @Test
     public void getRepliesByCommentIdTest() throws Exception {
 
         Comment comment = new Comment(new Film(), new User(), LocalDateTime.now(), LocalDateTime.now(), "Comment1", 1, 2, new HashSet<>());
@@ -107,7 +106,7 @@ public class ReplyControllerTest {
                 .andExpect(content().json(JsonUtils.toJsonString(replyDTOS)));
     }
 
-    @Test//todo ok?
+    @Test
     public void postReplyTest() throws Exception {
         ReplyDTO replyDTOBeforeSave = new ReplyDTO(22L, 11L, "content", 22, 22);
         ReplyDTO replyDTOAfterSave = new ReplyDTO(1L, 22L, 11L, "content", 22, 22);

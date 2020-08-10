@@ -5,7 +5,6 @@ import com.marcinwo.youtubeapi.demo.dto.PatchCommentDTO;
 import com.marcinwo.youtubeapi.demo.entity.*;
 import com.marcinwo.youtubeapi.demo.exeption.CommentNotFoundException;
 import com.marcinwo.youtubeapi.demo.repository.CommentRepository;
-import org.assertj.core.api.Assertions;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -100,7 +99,7 @@ public class CommentServiceTest {
     }
 
     @Test
-    public void given_commentExist_when_save_then_commentSaved(){
+    public void given_commentExist_when_save_then_commentSaved() {
         Comment comment = ExampleData.comment();
 
         when(commentRepository.save(comment)).thenReturn(comment);
@@ -112,7 +111,7 @@ public class CommentServiceTest {
     }
 
     @Test
-    public void given_commentExist_when_getCommentById_then_returnOptionalOfComment(){
+    public void given_commentExist_when_getCommentById_then_returnOptionalOfComment() {
         Comment comment = ExampleData.comment();
 
         when(commentRepository.findById(1L)).thenReturn(Optional.of(comment));
@@ -123,13 +122,13 @@ public class CommentServiceTest {
     }
 
     @Test(expected = CommentNotFoundException.class)
-    public void given_commentNotExist_when_getCommentById_then_returnCommentNotExist(){
+    public void given_commentNotExist_when_getCommentById_then_returnCommentNotExist() {
         when(commentRepository.findById(1L)).thenThrow(new CommentNotFoundException("Comment not found"));
 
         commentService.getCommentById(1L);
     }
 
-    @Test//ok - simply behavioral test
+    @Test// - simply behavioral test
     public void given_commentExist_when_updateCommentById_then_OnlyContentAndUpdatedAtAreUpdated() {
 //        given
         Comment comment = mock(Comment.class);
@@ -172,7 +171,7 @@ public class CommentServiceTest {
     }
 
     @Test//todo
-    public void given_commentExist_when_deleteCommentById_commentNotExist(){
+    public void given_commentExist_when_deleteCommentById_commentNotExist() {
 
 
     }

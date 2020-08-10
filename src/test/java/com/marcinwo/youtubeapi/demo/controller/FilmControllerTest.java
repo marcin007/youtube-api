@@ -16,6 +16,7 @@ import org.springframework.boot.test.autoconfigure.web.servlet.WebMvcTest;
 import org.springframework.boot.test.mock.mockito.MockBean;
 import org.springframework.test.context.junit4.SpringRunner;
 import org.springframework.test.web.servlet.MockMvc;
+
 import java.time.LocalDateTime;
 import java.util.List;
 import java.util.Set;
@@ -50,20 +51,19 @@ public class FilmControllerTest {
         );
 
         List<FilmDTO> filmDTOS = List.of(
-                new FilmDTO( "Sarnie zniwo1", "Horror", "www.dej.com", 333, "Testowiron"),
-                new FilmDTO( "Sarnie zniwo2", "Horror", "www.dej2.com", 34, "Testowiron")
+                new FilmDTO("Sarnie zniwo1", "Horror", "www.dej.com", 333, "Testowiron"),
+                new FilmDTO("Sarnie zniwo2", "Horror", "www.dej2.com", 34, "Testowiron")
         );
 
         when(filmService.getFilms()).thenReturn(films);
         when(filmMapper.toFilmDTO(anyCollection())).thenReturn(filmDTOS);
 
-            mockMvc.perform(get("/films"))
-                    .andDo(print())
-                    .andExpect(content().string(CoreMatchers.containsString("Horror")))
-                    .andExpect(status().isOk())
-                    .andExpect(content().json(JsonUtils.toJsonString(filmDTOS)));
+        mockMvc.perform(get("/films"))
+                .andDo(print())
+                .andExpect(content().string(CoreMatchers.containsString("Horror")))
+                .andExpect(status().isOk())
+                .andExpect(content().json(JsonUtils.toJsonString(filmDTOS)));
     }
-
 
 
 }

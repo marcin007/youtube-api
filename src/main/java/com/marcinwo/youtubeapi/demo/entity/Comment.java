@@ -35,5 +35,8 @@ public class Comment extends AbstractEntity {
     private Set<Reply> replySet;
 
 
-
+    @Override
+    public void setId(Long id) {
+        super.setId(id);
+    }
 }

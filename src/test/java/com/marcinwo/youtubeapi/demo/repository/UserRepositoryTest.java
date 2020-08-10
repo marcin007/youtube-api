@@ -67,15 +67,15 @@ public class UserRepositoryTest {
         assertThat(users.get(1).getFirstName()).isEqualTo(user2.getFirstName());
     }
 
-    @Test//ok
-    public void given_userNotExist_when_findByUserName_then_returnEmptyOptional(){
+    @Test
+    public void given_userNotExist_when_findByUserName_then_returnEmptyOptional() {
         Optional<User> user = userRepository.findByUserName("username");
 
         assertThat(user).isEmpty();
     }
 
-    @Test//ok
-    public void given_usersNotExist_when_findAllByLastName_then_returnEmptyUserList(){
+    @Test
+    public void given_usersNotExist_when_findAllByLastName_then_returnEmptyUserList() {
         List<User> user = userRepository.findAllByLastName("LastName");
 
         assertThat(user).isEmpty();

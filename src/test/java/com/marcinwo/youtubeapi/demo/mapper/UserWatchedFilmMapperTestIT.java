@@ -18,7 +18,7 @@ import org.springframework.test.context.junit4.SpringRunner;
 import java.math.BigDecimal;
 import java.time.LocalDateTime;
 
-import static org.junit.Assert.*;
+import static org.junit.Assert.assertEquals;
 
 @RunWith(SpringRunner.class)
 @SpringBootTest
@@ -34,7 +34,7 @@ public class UserWatchedFilmMapperTestIT {
     private UserWatchedFilmMapper userWatchedFilmMapper;
 
     @Test(expected = FilmNotFoundException.class)
-    public void when_toUserWatchedFilmEntityWithoutExistingFilmAndWithoutExistingUser_then_FilmNotFoundException(){
+    public void when_toUserWatchedFilmEntityWithoutExistingFilmAndWithoutExistingUser_then_FilmNotFoundException() {
         filmRepository.deleteAll();
         userRepository.deleteAll();
 
@@ -44,7 +44,7 @@ public class UserWatchedFilmMapperTestIT {
     }
 
     @Test(expected = FilmNotFoundException.class)
-    public void when_toUserWatchedFilmEntityWithoutExistingFilmAndWithExistingUser_then_FilmNotFoundException(){
+    public void when_toUserWatchedFilmEntityWithoutExistingFilmAndWithExistingUser_then_FilmNotFoundException() {
         filmRepository.deleteAll();
         userRepository.deleteAll();
 
@@ -59,7 +59,7 @@ public class UserWatchedFilmMapperTestIT {
     }
 
     @Test(expected = UserNotFoundException.class)
-    public void when_toUserWatchedFilmEntityWithExistingFilmAndWithoutExistingUser_then_UserNotFoundException(){
+    public void when_toUserWatchedFilmEntityWithExistingFilmAndWithoutExistingUser_then_UserNotFoundException() {
         filmRepository.deleteAll();
         userRepository.deleteAll();
 
@@ -74,7 +74,7 @@ public class UserWatchedFilmMapperTestIT {
     }
 
     @Test
-    public void when_toUserWatchedFilmEntityWithExistingFilmAndWithExistingUser_then_MappingIsFineTest(){
+    public void when_toUserWatchedFilmEntityWithExistingFilmAndWithExistingUser_then_MappingIsFineTest() {
         filmRepository.deleteAll();
         userRepository.deleteAll();
 
@@ -94,7 +94,7 @@ public class UserWatchedFilmMapperTestIT {
     }
 
     @Test
-    public void toUserWatchedFilmDTOTest(){
+    public void toUserWatchedFilmDTOTest() {
         UserWatchedFilm userWatchedFilm = new UserWatchedFilm(new User(), new Film(), new BigDecimal("44"), LocalDateTime.now(), LocalDateTime.now());
 
         UserWatchedFilmDTO userWatchedFilmDTO = userWatchedFilmMapper.toUserWatchedFilmDTO(userWatchedFilm);

@@ -11,7 +11,7 @@ public class CategoryMapperTest {
     private CategoryMapper categoryMapper = new CategoryMapperImpl();
 
     @Test
-    public void toCategoryDtoTest(){
+    public void toCategoryDtoTest() {
         Category category = new Category(1L, "category1");
 
         CategoryDTO categoryDTO = categoryMapper.toCategoryDTO(category);
@@ -21,8 +21,8 @@ public class CategoryMapperTest {
     }
 
     @Test
-    public void toCategoryEntityTest(){
-        CategoryDTO  categoryDTO = new CategoryDTO(1L,"aaa");
+    public void toCategoryEntityTest() {
+        CategoryDTO categoryDTO = new CategoryDTO(1L, "aaa");
 
         Category category = categoryMapper.toCategoryEntity(categoryDTO);
 
@@ -30,5 +30,4 @@ public class CategoryMapperTest {
         assertEquals(categoryDTO.getId(), category.getId());
     }
 
-    // dla kolekcji toCategoryDtoTest
 }

@@ -28,4 +28,8 @@ public class Channel extends AbstractEntity {
     @OneToMany(mappedBy = "channel", cascade = CascadeType.ALL)
     private Set<Film> films = new HashSet<>();
 
+    @Override
+    public void setId(Long id) {
+        super.setId(id);
+    }
 }

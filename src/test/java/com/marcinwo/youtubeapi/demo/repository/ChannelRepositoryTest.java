@@ -4,24 +4,20 @@ package com.marcinwo.youtubeapi.demo.repository;
 import com.marcinwo.youtubeapi.demo.ExampleData;
 import com.marcinwo.youtubeapi.demo.entity.Channel;
 import com.marcinwo.youtubeapi.demo.entity.User;
-import com.marcinwo.youtubeapi.demo.exeption.ChannelNotFoundException;
-import com.marcinwo.youtubeapi.demo.exeption.UserNotFoundException;
-import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
-import org.junit.platform.commons.util.CollectionUtils;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.orm.jpa.DataJpaTest;
 import org.springframework.boot.test.autoconfigure.orm.jpa.TestEntityManager;
 import org.springframework.test.context.ActiveProfiles;
 import org.springframework.test.context.junit4.SpringRunner;
-import static org.assertj.core.api.Assertions.assertThat;
 
 import java.util.HashSet;
 import java.util.List;
 
-import static org.junit.Assert.*;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.Assert.assertEquals;
 
 @ActiveProfiles("test")
 @DataJpaTest
@@ -39,7 +35,7 @@ public class ChannelRepositoryTest {
         channelRepository.deleteAll();
     }
 
-    @Test//ok
+    @Test
     public void given_userHasChannels_when_findAllByUserId_then_returnChannels() {
         User myUser = ExampleData.user();
 
@@ -63,14 +59,12 @@ public class ChannelRepositoryTest {
 
     }
 
-    @Test()//ok
-    public void given_userHasNoChannels_when_findAllByUserId_then_returnEmptyChannelList(){
+    @Test()
+    public void given_userHasNoChannels_when_findAllByUserId_then_returnEmptyChannelList() {
         List<Channel> channels = channelRepository.findAllByUser_Id(1L);
 
         assertThat(channels).isEmpty();
     }
-
-
 
 
 }
