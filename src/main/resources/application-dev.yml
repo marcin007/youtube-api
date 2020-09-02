@@ -1,0 +1,19 @@
+server:
+  port: 1111
+spring:
+  h2:
+    console:
+      path: /h2console
+      enabled: true
+
+  datasource:
+    url: jdbc:h2:file:./youtube_app_database
+    driver-class-name: org.h2.Driver
+    username: sa
+    password:
+
+  jpa:
+    database-platform: org.hibernate.dialect.H2Dialect
+    hibernate:
+      ddl-auto: update
+
