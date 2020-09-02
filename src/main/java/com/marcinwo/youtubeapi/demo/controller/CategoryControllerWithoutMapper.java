@@ -34,13 +34,4 @@ public class CategoryControllerWithoutMapper {
         return new ApiInformation("Delete sucessful.", HttpStatus.OK.value());
     }
 
-//    @PostMapping("/categories")
-//    public CategoryDTO postCategory(@RequestBody CategoryDTO categoryDTO){
-//        return categoryMapper.toCategoryDTO();
-//    }
-//
-//    @PatchMapping("/categories/{id}")
-//    public CategoryDTO updateCategoryById(@PathVariable Long id, @Valid @RequestBody PatchCategoryDTO patchCategoryDTO){
-//        return categoryMapper.toCategoryDTO(categoryService.updateCategoryById(id,patchCategoryDTO));
-//    }
 }
