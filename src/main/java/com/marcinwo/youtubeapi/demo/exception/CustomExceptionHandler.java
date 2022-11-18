@@ -15,18 +15,18 @@ public class CustomExceptionHandler extends ResponseEntityExceptionHandler {
 
 
     @ExceptionHandler(com.marcinwo.youtubeapi.demo.exception.UserNotFoundException.class)
-    public ResponseEntity<com.marcinwo.youtubeapi.demo.exeption.ApiError> handlerUserNotFoundException (com.marcinwo.youtubeapi.demo.exception.UserNotFoundException e, WebRequest webRequest){
-        return new ResponseEntity<>(new com.marcinwo.youtubeapi.demo.exeption.ApiError("User not found.", HttpStatus.NOT_FOUND.value()), HttpStatus.NOT_FOUND);
+    public ResponseEntity<com.marcinwo.youtubeapi.demo.exception.ApiError> handlerUserNotFoundException (com.marcinwo.youtubeapi.demo.exception.UserNotFoundException e, WebRequest webRequest){
+        return new ResponseEntity<>(new com.marcinwo.youtubeapi.demo.exception.ApiError("User not found.", HttpStatus.NOT_FOUND.value()), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(CategoryNotFoundException.class)
-    public ResponseEntity<com.marcinwo.youtubeapi.demo.exeption.ApiError> handlerCategoryNotFoundException(CategoryNotFoundException e, WebRequest webRequest){
-        return new ResponseEntity<>(new com.marcinwo.youtubeapi.demo.exeption.ApiError("Category not found.", HttpStatus.NOT_FOUND.value()), HttpStatus.NOT_FOUND);
+    public ResponseEntity<com.marcinwo.youtubeapi.demo.exception.ApiError> handlerCategoryNotFoundException(CategoryNotFoundException e, WebRequest webRequest){
+        return new ResponseEntity<>(new com.marcinwo.youtubeapi.demo.exception.ApiError("Category not found.", HttpStatus.NOT_FOUND.value()), HttpStatus.NOT_FOUND);
     }
 
     @ExceptionHandler(ChannelNotFoundException.class)
-    public ResponseEntity<com.marcinwo.youtubeapi.demo.exeption.ApiError> handlerChannelNotFoundException(CategoryNotFoundException e, WebRequest webRequest){
-        return new ResponseEntity<>(new com.marcinwo.youtubeapi.demo.exeption.ApiError("Channel not found.", HttpStatus.NOT_FOUND.value()), HttpStatus.NOT_FOUND);
+    public ResponseEntity<com.marcinwo.youtubeapi.demo.exception.ApiError> handlerChannelNotFoundException(CategoryNotFoundException e, WebRequest webRequest){
+        return new ResponseEntity<>(new com.marcinwo.youtubeapi.demo.exception.ApiError("Channel not found.", HttpStatus.NOT_FOUND.value()), HttpStatus.NOT_FOUND);
     }
 
 

@@ -1,4 +1,4 @@
-package com.marcinwo.youtubeapi.demo.exeption;
+package com.marcinwo.youtubeapi.demo.exception;
 
 import lombok.AllArgsConstructor;
 import lombok.Getter;
