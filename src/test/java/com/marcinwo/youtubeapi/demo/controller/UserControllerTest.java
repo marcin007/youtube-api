@@ -8,7 +8,7 @@ import com.marcinwo.youtubeapi.demo.entity.Channel;
 import com.marcinwo.youtubeapi.demo.entity.Reply;
 import com.marcinwo.youtubeapi.demo.entity.User;
 import com.marcinwo.youtubeapi.demo.entity.UserWatchedFilm;
-import com.marcinwo.youtubeapi.demo.exeption.UserNotFoundException;
+import com.marcinwo.youtubeapi.demo.exception.UserNotFoundException;
 import com.marcinwo.youtubeapi.demo.mapper.UserMapper;
 import com.marcinwo.youtubeapi.demo.service.UserService;
 import org.hamcrest.CoreMatchers;

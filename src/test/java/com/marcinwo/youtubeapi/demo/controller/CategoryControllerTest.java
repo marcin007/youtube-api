@@ -4,7 +4,7 @@ import com.marcinwo.youtubeapi.demo.JsonUtils;
 import com.marcinwo.youtubeapi.demo.dto.CategoryDTO;
 import com.marcinwo.youtubeapi.demo.dto.PatchCategoryDTO;
 import com.marcinwo.youtubeapi.demo.entity.Category;
-import com.marcinwo.youtubeapi.demo.exeption.CategoryNotFoundException;
+import com.marcinwo.youtubeapi.demo.exception.CategoryNotFoundException;
 import com.marcinwo.youtubeapi.demo.mapper.CategoryMapper;
 import com.marcinwo.youtubeapi.demo.service.CategoryService;
 import org.junit.Test;

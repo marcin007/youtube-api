@@ -3,7 +3,7 @@ package com.marcinwo.youtubeapi.demo.controller;
 import com.marcinwo.youtubeapi.demo.JsonUtils;
 import com.marcinwo.youtubeapi.demo.dto.ChannelDTO;
 import com.marcinwo.youtubeapi.demo.entity.*;
-import com.marcinwo.youtubeapi.demo.exeption.UserNotFoundException;
+import com.marcinwo.youtubeapi.demo.exception.UserNotFoundException;
 import com.marcinwo.youtubeapi.demo.mapper.ChannelMapper;
 import com.marcinwo.youtubeapi.demo.service.ChannelService;
 import org.hamcrest.CoreMatchers;

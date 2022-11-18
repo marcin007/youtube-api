@@ -1,4 +1,4 @@
-package com.marcinwo.youtubeapi.demo.exeption;
+package com.marcinwo.youtubeapi.demo.exception;
 
 public class FilmNotFoundException extends RuntimeException {
 

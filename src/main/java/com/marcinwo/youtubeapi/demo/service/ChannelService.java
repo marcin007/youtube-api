@@ -3,7 +3,7 @@ package com.marcinwo.youtubeapi.demo.service;
 
 import com.marcinwo.youtubeapi.demo.dto.PatchChannelDTO;
 import com.marcinwo.youtubeapi.demo.entity.Channel;
-import com.marcinwo.youtubeapi.demo.exeption.ChannelNotFoundException;
+import com.marcinwo.youtubeapi.demo.exception.ChannelNotFoundException;
 import com.marcinwo.youtubeapi.demo.repository.ChannelRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

@@ -3,7 +3,7 @@ package com.marcinwo.youtubeapi.demo.service;
 import com.marcinwo.youtubeapi.demo.ExampleData;
 import com.marcinwo.youtubeapi.demo.dto.PatchCommentDTO;
 import com.marcinwo.youtubeapi.demo.entity.*;
-import com.marcinwo.youtubeapi.demo.exeption.CommentNotFoundException;
+import com.marcinwo.youtubeapi.demo.exception.CommentNotFoundException;
 import com.marcinwo.youtubeapi.demo.repository.CommentRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;
