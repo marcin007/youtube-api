@@ -39,7 +39,7 @@ public class CategoryController {
     @DeleteMapping("/categories/{id}")
     public ApiInformation deleteCategory(@PathVariable Long id){
         categoryService.deleteCategory(id);
-        return new ApiInformation("Delete sucessful.", HttpStatus.OK.value());
+        return new ApiInformation("Delete successful.", HttpStatus.OK.value());
     }
 
     @PatchMapping("/categories/{id}")

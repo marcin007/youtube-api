@@ -2,7 +2,7 @@ package com.marcinwo.youtubeapi.demo.service;
 
 import com.marcinwo.youtubeapi.demo.dto.PatchCategoryDTO;
 import com.marcinwo.youtubeapi.demo.entity.Category;
-import com.marcinwo.youtubeapi.demo.exeption.CategoryNotFoundException;
+import com.marcinwo.youtubeapi.demo.exception.CategoryNotFoundException;
 import com.marcinwo.youtubeapi.demo.repository.CategoryRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;

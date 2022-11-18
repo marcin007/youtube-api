@@ -1,7 +1,7 @@
 package com.marcinwo.youtubeapi.demo.service;
 
 import com.marcinwo.youtubeapi.demo.entity.Film;
-import com.marcinwo.youtubeapi.demo.exeption.FilmNotFoundException;
+import com.marcinwo.youtubeapi.demo.exception.FilmNotFoundException;
 import com.marcinwo.youtubeapi.demo.repository.FilmRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;

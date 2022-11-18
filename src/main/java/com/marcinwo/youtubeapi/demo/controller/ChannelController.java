@@ -3,7 +3,6 @@ package com.marcinwo.youtubeapi.demo.controller;
 import com.marcinwo.youtubeapi.demo.ApiInformation;
 import com.marcinwo.youtubeapi.demo.dto.ChannelDTO;
 import com.marcinwo.youtubeapi.demo.dto.PatchChannelDTO;
-import com.marcinwo.youtubeapi.demo.entity.Channel;
 import com.marcinwo.youtubeapi.demo.mapper.ChannelMapper;
 import com.marcinwo.youtubeapi.demo.service.ChannelService;
 import org.springframework.beans.factory.annotation.Autowired;

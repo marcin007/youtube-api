@@ -4,7 +4,7 @@ import com.marcinwo.youtubeapi.demo.entity.Category;
 import com.marcinwo.youtubeapi.demo.entity.Channel;
 import com.marcinwo.youtubeapi.demo.entity.Film;
 import com.marcinwo.youtubeapi.demo.entity.User;
-import com.marcinwo.youtubeapi.demo.exeption.FilmNotFoundException;
+import com.marcinwo.youtubeapi.demo.exception.FilmNotFoundException;
 import com.marcinwo.youtubeapi.demo.repository.FilmRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;

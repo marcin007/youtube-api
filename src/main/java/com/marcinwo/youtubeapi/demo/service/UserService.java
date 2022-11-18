@@ -2,9 +2,8 @@ package com.marcinwo.youtubeapi.demo.service;
 
 
 import com.marcinwo.youtubeapi.demo.dto.PatchUserDTO;
-import com.marcinwo.youtubeapi.demo.dto.UserDTO;
 import com.marcinwo.youtubeapi.demo.entity.User;
-import com.marcinwo.youtubeapi.demo.exeption.UserNotFoundException;
+import com.marcinwo.youtubeapi.demo.exception.UserNotFoundException;
 import com.marcinwo.youtubeapi.demo.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;

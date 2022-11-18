@@ -4,7 +4,7 @@ package com.marcinwo.youtubeapi.demo.service;
 import com.marcinwo.youtubeapi.demo.dto.PatchChannelDTO;
 import com.marcinwo.youtubeapi.demo.entity.Channel;
 import com.marcinwo.youtubeapi.demo.entity.User;
-import com.marcinwo.youtubeapi.demo.exeption.ChannelNotFoundException;
+import com.marcinwo.youtubeapi.demo.exception.ChannelNotFoundException;
 import com.marcinwo.youtubeapi.demo.repository.ChannelRepository;
 import org.junit.Test;
 import org.junit.runner.RunWith;

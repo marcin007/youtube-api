@@ -4,7 +4,6 @@ package com.marcinwo.youtubeapi.demo.controller;
 import com.marcinwo.youtubeapi.demo.ApiInformation;
 import com.marcinwo.youtubeapi.demo.dto.CommentDTO;
 import com.marcinwo.youtubeapi.demo.dto.PatchCommentDTO;
-import com.marcinwo.youtubeapi.demo.entity.Comment;
 import com.marcinwo.youtubeapi.demo.mapper.CommentMapper;
 import com.marcinwo.youtubeapi.demo.service.CommentService;
 import org.springframework.beans.factory.annotation.Autowired;
