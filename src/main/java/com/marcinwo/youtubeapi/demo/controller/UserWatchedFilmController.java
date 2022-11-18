@@ -2,7 +2,6 @@ package com.marcinwo.youtubeapi.demo.controller;
 
 import com.marcinwo.youtubeapi.demo.ApiInformation;
 import com.marcinwo.youtubeapi.demo.dto.UserWatchedFilmDTO;
-import com.marcinwo.youtubeapi.demo.entity.UserWatchedFilm;
 import com.marcinwo.youtubeapi.demo.mapper.UserWatchedFilmMapper;
 import com.marcinwo.youtubeapi.demo.service.UserWatchedFilmService;
 import org.springframework.beans.factory.annotation.Autowired;

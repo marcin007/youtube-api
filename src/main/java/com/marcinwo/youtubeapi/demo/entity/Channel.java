@@ -1,6 +1,5 @@
 package com.marcinwo.youtubeapi.demo.entity;
 
-import com.fasterxml.jackson.annotation.JsonPropertyOrder;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
